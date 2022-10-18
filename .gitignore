@@ -4,3 +4,5 @@
 # ignore the pycache
 __pycache__/
 
+# ignore data folder (only store code on the repo)
+data/
