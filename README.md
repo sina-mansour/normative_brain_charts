@@ -1,26 +1,5 @@
 # Spectral Normative Modeling (SNM)
 
----
-
-This repository hosts the associated scripts used for our manuscript on [Spectral Normative Modeling of Brain Structure](https://doi.org/10.1101/2025.01.16.25320639)
-A repository hosting codes used for normative models of brain development.
-
----
-
-The scripts are structured into 7 different sets of notebooks, together containing all required analytical steps utilized in our study.
-
-The following is a description of what notebooks in each step accomplish:
-
-1. **Data Import Scripts**: The scripts from `code/notebooks/01_data_import` were used to process and clean the cortical thickness data of healthy participants from the HCP lifespan datasets.
-2. **Data Aggregation Scripts**: The scripts form `code/notebooks/02_data_aggregation` were used to combine the clean data from different datasets, in addition to scripts utilized to randomly split the data into training and test sets.
-3. **Normative Models**: The scripts from `code/notebooks/03_normative_models` were used to implement a basic normative model architecture to model a single variable as a function of covariates (age, sex, site). We implemented a Hierarchical Bayesian Regression architecture utilizing the PyMC Python package for probabilistic programming. The same model architecture was used for both the direct and the spectral implementations.
-4. **Spectral Basis Construction**: The scripts form `code/notebooks/04_normative_kernels` were used to construct spectral kernels/basis functions to encode the high-resolution phenotypes. Notably, we mapped connectome-based brain eigenmodes via singular value decomposition of a random walk graph Laplacian shift operator (see notebook 04_04_02).
-5. **Spectral Normative Model Fitting**: The scripts from `code/05_kernel_normative_models` were used to fit a prototype of the Spectral Normative Model and verify its generation of normative ranges (see notebook 05_01_05).
-6. **Performance Evaluation Scripts**: The scripts from `code/06_performance_evaluation` were used to evaluate the accuracy of SNMs with different number of modes and compare that to a direct model. This directory contains all relevant scripts to reproduce the comparative figures presented in our manuscript.
-7. **Clinical (AD) Evaluations**: The scripts from `code/07_clinical_evaluation` were used to (i) clean the clinical AD sample's data (MACC Harmonization dataset), (ii) fine-tune the healthy SNM to this new site (learning harmonization parameters), and (iii) perform all clinical evaluations reported in the manuscript (including reproducible figures).
-
-# Spectral Normative Modeling (SNM)
-
 This repository hosts the scripts and code used for our manuscript on **[Spectral Normative Modeling of Brain Structure](https://doi.org/10.1101/2025.01.16.25320639)**. The study focuses on normative modeling of brain development using spectral methods, with applications to both healthy and clinical populations.
 
 ---
@@ -66,7 +45,7 @@ The repository is organized into **7 sets of notebooks**, each corresponding to 
 
 If you use this repository in your research, please cite our manuscript:
 
-> Mansour L., et al. (2025). Spectral Normative Modeling of Brain Structure. medRxiv. DOI: 10.1101/2025.01.16.25320639
+> Mansour L., S., et al. (2025). Spectral Normative Modeling of Brain Structure. medRxiv. DOI: 10.1101/2025.01.16.25320639
 
 ---
 
