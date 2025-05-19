@@ -6,3 +6,14 @@ __pycache__/
 
 # ignore data folder (only store code on the repo)
 data/
+
+# ignore figures stored here
+figs/
+
+# ignore the notebooks in this folder
+code/notebooks/other_notebooks/
+
+# also ignore these specific notebooks for now
+code/notebooks/01_data_import/01_04_abcd.ipynb
+code/notebooks/04_normative_kernels/04_03_independent_geometric_kernels/04_03_02_simple_geometric_kernel.ipynb
+code/notebooks/05_kernel_normative_models/05_01_PYMC/Untitled.ipynb
