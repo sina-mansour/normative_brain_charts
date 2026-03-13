@@ -14,6 +14,7 @@ figs/
 code/notebooks/other_notebooks/
 
 # also ignore these specific notebooks for now
+code/notebooks/01_data_import/xxx01_23_reset.ipynb
 code/notebooks/04_normative_kernels/04_03_independent_geometric_kernels/04_03_02_simple_geometric_kernel.ipynb
 code/notebooks/05_kernel_normative_models/05_01_PYMC/Untitled.ipynb
-code/notebooks/01_data_import/xxx01_23_reset.ipynb
+code/notebooks/06_performance_evaluation/06_xx_testing.ipynb
