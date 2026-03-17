@@ -1,8 +1,10 @@
 # Spectral Normative Modeling (SNM)
 
+![Spectral Normative Modeling](assets/banner.webp)
+
 This repository hosts the scripts and code used for our manuscript on **[Spectral Normative Modeling of Brain Structure](https://doi.org/10.1101/2025.01.16.25320639)**. The study focuses on normative modeling of brain development using spectral methods, with applications to both healthy and clinical populations.
 
-![Spectral Normative Modeling](assets/banner.png)
+**Mansour L, Sina, et al. "Spectral normative modeling of brain structure." medRxiv (2025): 2025-01.**
 
 ---
 
