@@ -100,6 +100,29 @@ Shares the data produced in this manuscript. Includes:
 
 ---
 
+## 🗄️ Pretrained Model
+
+The pretrained SNM1000 model is available as a release asset:
+
+[![GitHub Release](https://img.shields.io/github/v/release/sina-mansour/normative_brain_charts?style=flat-square)](https://github.com/sina-mansour/normative_brain_charts/releases/latest)
+
+Download and decompress:
+```bash
+wget https://github.com/sina-mansour/normative_brain_charts/releases/download/v1.0/pretrained_SNM_1000_V1.0.tar.gz
+tar -xzvf pretrained_SNM_1000_V1.0.tar.gz
+```
+
+Load the model in Python:
+```python
+from spectranorm import snm
+
+snm_1000 = snm.SpectralNormativeModel.load_model(
+    "/<path-to-extracted-directory>/pretrained_SNM_1000_V1.0/"
+)
+```
+
+For usage examples, refer to [Notebooks 07–09](code/notebooks) and the [SpectraNorm tutorials](https://sina-mansour.github.io/spectranorm/tutorials/).
+
 ## 📊 Provided Normative Charts
 
 Using the pretrained **SNM1000** model (trained on >78,000 healthy brains), we derived cortical thickness normative trajectories across **50 parcellation schemes** covering **23,242 cortical regions** in total. Charts are provided separately for males, females, and the combined sample.
