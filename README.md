@@ -114,6 +114,10 @@ Each item in the table below links to the associated CSV file included in the cu
 | Von Economo-Koskinas | [📄](data/charts/Economo.normative_trajectories.csv) | [📄](data/charts/Economo.female_normative_trajectories.csv) | [📄](data/charts/Economo.male_normative_trajectories.csv) |
 | Gordon 333 | [📄](data/charts/Gordon333.normative_trajectories.csv) | [📄](data/charts/Gordon333.female_normative_trajectories.csv) | [📄](data/charts/Gordon333.male_normative_trajectories.csv) |
 | HCP MMP 1.0 (Glasser) | [📄](data/charts/HCP_MMP1.0_Glasser.normative_trajectories.csv) | [📄](data/charts/HCP_MMP1.0_Glasser.female_normative_trajectories.csv) | [📄](data/charts/HCP_MMP1.0_Glasser.male_normative_trajectories.csv) |
+| Yeo 7 Networks (N1000) | [📄](data/charts/Yeo2011_7Networks_N1000.normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks_N1000.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks_N1000.male_normative_trajectories.csv) |
+| Yeo 7 Networks (split components) | [📄](data/charts/Yeo2011_7Networks.split_components.normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks.split_components.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks.split_components.male_normative_trajectories.csv) |
+| Yeo 17 Networks (N1000) | [📄](data/charts/Yeo2011_17Networks_N1000.normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks_N1000.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks_N1000.male_normative_trajectories.csv) |
+| Yeo 17 Networks (split components) | [📄](data/charts/Yeo2011_17Networks.split_components.normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks.split_components.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks.split_components.male_normative_trajectories.csv) |
 | Schaefer 100 (7 Networks) | [📄](data/charts/Schaefer2018_100Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_100Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_100Parcels_7Networks_order.male_normative_trajectories.csv) |
 | Schaefer 100 (17 Networks) | [📄](data/charts/Schaefer2018_100Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_100Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_100Parcels_17Networks_order.male_normative_trajectories.csv) |
 | Schaefer 200 (7 Networks) | [📄](data/charts/Schaefer2018_200Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_200Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_200Parcels_7Networks_order.male_normative_trajectories.csv) |
@@ -154,10 +158,6 @@ Each item in the table below links to the associated CSV file included in the cu
 | Yan 900 (17 Networks) | [📄](data/charts/Yan2023_900Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_900Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_900Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
 | Yan 1000 (7 Networks) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
 | Yan 1000 (17 Networks) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yeo 7 Networks (N1000) | [📄](data/charts/Yeo2011_7Networks_N1000.normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks_N1000.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks_N1000.male_normative_trajectories.csv) |
-| Yeo 7 Networks (split components) | [📄](data/charts/Yeo2011_7Networks.split_components.normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks.split_components.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks.split_components.male_normative_trajectories.csv) |
-| Yeo 17 Networks (N1000) | [📄](data/charts/Yeo2011_17Networks_N1000.normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks_N1000.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks_N1000.male_normative_trajectories.csv) |
-| Yeo 17 Networks (split components) | [📄](data/charts/Yeo2011_17Networks.split_components.normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks.split_components.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks.split_components.male_normative_trajectories.csv) |
 
 ---
 
@@ -166,7 +166,7 @@ Each item in the table below links to the associated CSV file included in the cu
 This repository is **dual licensed**:
 
 - **Non-commercial / Academic use**: [GNU AGPLv3](LICENSE)
-- **Commercial use**: A separate commercial license is required — please contact [sina.mansour.lakouraj@gmail.com](mailto:sina.mansour.lakouraj@gmail.com)
+- **Commercial use**: A separate commercial license is required
 
 See the [LICENSE](LICENSE) file for full details.
 
