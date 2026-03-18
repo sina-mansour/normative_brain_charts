@@ -98,7 +98,7 @@ Shares the data produced in this manuscript. Includes:
 - A pretrained SNM for cortical thickness
 - Normative brain charts for multiple cortical parcellations
 
-> 🎨 **[Explore an interactive visualization of the pretrain vertex resolution charts](https://sina-mansour.github.io/normative_brain_charts/code/notebooks/10_interactive_visualization/08_01_interactive_visualization.html)**
+> 🎨 Explore an **[interactive visualization of the pretrained SNM1000 vertex resolution charts](https://sina-mansour.github.io/normative_brain_charts/code/notebooks/10_interactive_visualization/08_01_interactive_visualization.html)**
 
 ---
 
