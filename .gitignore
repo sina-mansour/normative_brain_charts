@@ -5,7 +5,11 @@
 __pycache__/
 
 # ignore data folder (only store code on the repo)
-data/
+data/*
+
+# But allow data/charts/
+!data/charts/
+!data/charts/**
 
 # ignore figures stored here
 figs/
