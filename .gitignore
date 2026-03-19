@@ -10,6 +10,8 @@ data/*
 # But allow data/charts/
 !data/charts/
 !data/charts/**
+!data/brainmaps/
+!data/brainmaps/**
 
 # ignore figures stored here
 figs/

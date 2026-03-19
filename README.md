@@ -201,6 +201,20 @@ import joblib
 vertex_charts = joblib.load("/<path-to-file>/vertex-wise.fs_LR_32k.normative_trajectories.joblib")
 ```
 
+## 🗺️ Cortical Maps
+
+The cortical maps derived in this study are publicly available in the [`data/brainmaps/`](data/brainmaps) directory. Each map is provided in both `.dscalar.nii` (CIFTI) and `.npy` (NumPy) formats.
+
+| Map | CIFTI | NumPy |
+|---|---|---|
+| First Thickness Growth Gradient | [📄](data/brainmaps/First_Thickness_Growth_Gradient.dscalar.nii) | [📄](data/brainmaps/First_Thickness_Growth_Gradient.npy) |
+| Second Thickness Growth Gradient | [📄](data/brainmaps/Second_Thickness_Growth_Gradient.dscalar.nii) | [📄](data/brainmaps/Second_Thickness_Growth_Gradient.npy) |
+| Third Thickness Growth Gradient | [📄](data/brainmaps/Third_Thickness_Growth_Gradient.dscalar.nii) | [📄](data/brainmaps/Third_Thickness_Growth_Gradient.npy) |
+| Developmental Cortical Pruning | [📄](data/brainmaps/Developmental_Cortical_Pruning.dscalar.nii) | [📄](data/brainmaps/Developmental_Cortical_Pruning.npy) |
+| Aging Thickness Decline | [📄](data/brainmaps/Aging_Thickness_Decline.dscalar.nii) | [📄](data/brainmaps/Aging_Thickness_Decline.npy) |
+
+The `.dscalar.nii` files can be visualized directly in [Connectome Workbench](https://www.humanconnectome.org/software/connectome-workbench), while the `.npy` files can be loaded in Python via `numpy.load()`.
+
 ---
 
 ## 📄 License
