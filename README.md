@@ -184,6 +184,23 @@ Each item in the table below links to the associated CSV file included in the cu
 | Yan 1000 (7 Networks) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
 | Yan 1000 (17 Networks) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
 
+### Vertex-Wise Normative Charts
+
+In addition to the parcellation-based charts, we also provide normative trajectories at the **full vertex resolution** of the **fs_LR 32k** surface mesh (~32,000 vertices per hemisphere).
+
+| Resolution | Combined | Female | Male |
+|---|---|---|---|
+| Vertex-wise (`fs_LR 32k`) | [📄](data/charts/vertex-wise.fs_LR_32k.normative_trajectories.joblib) | [📄](data/charts/vertex-wise.fs_LR_32k.female_normative_trajectories.joblib) | [📄](data/charts/vertex-wise.fs_LR_32k.male_normative_trajectories.joblib) |
+
+These are stored as `.joblib` files and can be loaded directly into Python.
+
+```python
+import joblib
+
+# Load the normative trajectories
+vertex_charts = joblib.load("/<path-to-file>/vertex-wise.fs_LR_32k.normative_trajectories.joblib")
+```
+
 ---
 
 ## 📄 License
