@@ -19,7 +19,16 @@ figs/
 # ignore the notebooks in this folder
 code/notebooks/other_notebooks/
 
-# also ignore these specific notebooks for now
+# ignore the mkdocs build output
+site/
+
+# ignore assorted caches
+.cache/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# ignore the scratch/superseded files kept locally for reference
 code/notebooks/01_data_import/xxx01_23_reset.ipynb
 code/notebooks/04_normative_kernels/04_03_independent_geometric_kernels/04_03_02_simple_geometric_kernel.ipynb
 code/notebooks/05_kernel_normative_models/05_01_PYMC/Untitled.ipynb
@@ -27,3 +36,7 @@ code/notebooks/06_performance_evaluation/06_xx_testing.ipynb
 code/notebooks/07_growth_gradients/07_01_growth_gradients_testing.ipynb
 code/notebooks/07_growth_gradients/Scratch_spatial_null.ipynb
 code/notebooks/08_clinical_evaluation/Untitled.ipynb
+code/R/sigclust2_analysis_old.R
+code/R/sigclust2_pca_analysis.R
+code/notebooks/07_growth_gradients/scratch_integration_maps.ipynb
+code/notebooks/08_clinical_evaluation/cluster_analysis_testing.ipynb
