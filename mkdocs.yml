@@ -1,0 +1,188 @@
+site_name: Spectral Normative Modeling of Brain Structure
+site_url: https://sina-mansour.github.io/normative_brain_charts/
+site_description: Reproducibility resources for the SNM manuscript.
+site_author: Sina Mansour L.
+
+repo_url: https://github.com/sina-mansour/normative_brain_charts/
+repo_name: sina-mansour/normative_brain_charts
+# edit_uri: edit/main/
+
+docs_dir: docs
+site_dir: site
+
+exclude_docs: |
+  code/notebooks/**
+  overrides/hooks/**
+  !code/notebooks/01_data_import/01_01_hcp_young_adult.ipynb
+  !code/notebooks/01_data_import/01_02_hcp_development.ipynb
+  !code/notebooks/01_data_import/01_03_hcp_aging.ipynb
+  !code/notebooks/01_data_import/01_04_abcd.ipynb
+  !code/notebooks/01_data_import/01_05_ukb.ipynb
+  !code/notebooks/01_data_import/01_06_rbc.ipynb
+  !code/notebooks/01_data_import/01_07_BGSP.ipynb
+  !code/notebooks/01_data_import/01_08_DLBS.ipynb
+  !code/notebooks/01_data_import/01_09_adhd200.ipynb
+  !code/notebooks/01_data_import/01_10_aomic.ipynb
+  !code/notebooks/01_data_import/01_11_sald.ipynb
+  !code/notebooks/01_data_import/01_12_ixi.ipynb
+  !code/notebooks/01_data_import/01_13_asrb.ipynb
+  !code/notebooks/01_data_import/01_14_wayne.ipynb
+  !code/notebooks/01_data_import/01_15_adni.ipynb
+  !code/notebooks/01_data_import/01_16_oasis.ipynb
+  !code/notebooks/01_data_import/01_17_aibl.ipynb
+  !code/notebooks/01_data_import/01_18_singer.ipynb
+  !code/notebooks/01_data_import/01_19_sg70.ipynb
+  !code/notebooks/01_data_import/01_20_tcp.ipynb
+  !code/notebooks/01_data_import/01_21_gusto.ipynb
+  !code/notebooks/01_data_import/01_22_sglifespan.ipynb
+  !code/notebooks/01_data_import/01_23_spresto.ipynb
+  !code/notebooks/01_data_import/01_24_abide.ipynb
+  !code/notebooks/01_data_import/01_25_corr.ipynb
+  !code/notebooks/01_data_import/01_26_slim.ipynb
+  !code/notebooks/01_data_import/01_27_macc.ipynb
+  !code/notebooks/02_data_aggregation/02_01_aggregating_imported_datasets.ipynb
+  !code/notebooks/02_data_aggregation/02_02_train_test_split_labels.ipynb
+  !code/notebooks/02_data_aggregation/02_03_encode_thickness_data.ipynb
+  !code/notebooks/03_direct_model/03_01_direct_thickness_model.ipynb
+  !code/notebooks/04_eigenmode_basis/04_01_cortical_connectome_eigenmodes.ipynb
+  !code/notebooks/05_spectral_model/05_01_spectral_thickness_model.ipynb
+  !code/notebooks/06_performance_evaluation/06_01_systematic_performance_evaluations.ipynb
+  !code/notebooks/06_performance_evaluation/06_02_publication_figures.ipynb
+  !code/notebooks/07_growth_gradients/07_01_growth_gradients.ipynb
+  !code/notebooks/08_clinical_evaluation/08_01_clinical_application_in_AD.ipynb
+  !code/notebooks/08_clinical_evaluation/08_02_clinical_AD_cluster_analyses.ipynb
+  !code/notebooks/09_data_sharing/09_01_snm_1000_pretrained_model.ipynb
+  !code/notebooks/09_data_sharing/09_02_atlas_charts.ipynb
+  !code/notebooks/09_data_sharing/09_03_vertex_charts.ipynb
+  !code/notebooks/10_interactive_visualization/08_01_interactive_visualizations_plotly.ipynb
+  !code/notebooks/10_interactive_visualization/08_01_interactive_visualization.html
+
+theme:
+  name: material
+  icon:
+    logo: material/code-greater-than
+  favicon: assets/favicon.svg
+  custom_dir: docs/overrides
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: slate
+      primary: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+      ignore_h1_titles: true
+      remove_tag_config:
+        remove_cell_tags:
+          - hide
+          - remove-cell
+        remove_input_tags:
+          - hide-input
+          - remove-input
+        remove_all_outputs_tags:
+          - hide-output
+          - remove-output
+      show_input: True
+      no_prompt: True
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - overrides/stylesheets/extra.css
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+hooks:
+  - docs/overrides/hooks/on_page_content.py
+  - docs/overrides/hooks/cell_anchors.py
+
+watch:
+  - ./code
+  - ./README.md
+  - ./reproducibility_walkthrough.md
+  - ./mkdocs.yml
+
+nav:
+  - SNM Home: README.md
+  - Reproducibility Walkthrough: reproducibility_walkthrough.md
+  - Pipeline:
+      - Data Import:
+          - HCP Young Adult: code/notebooks/01_data_import/01_01_hcp_young_adult.ipynb
+          - HCP Development: code/notebooks/01_data_import/01_02_hcp_development.ipynb
+          - HCP Aging: code/notebooks/01_data_import/01_03_hcp_aging.ipynb
+          - ABCD: code/notebooks/01_data_import/01_04_abcd.ipynb
+          - UK Biobank: code/notebooks/01_data_import/01_05_ukb.ipynb
+          - Reproducible Brain Charts: code/notebooks/01_data_import/01_06_rbc.ipynb
+          - BGSP: code/notebooks/01_data_import/01_07_BGSP.ipynb
+          - DLBS: code/notebooks/01_data_import/01_08_DLBS.ipynb
+          - ADHD-200: code/notebooks/01_data_import/01_09_adhd200.ipynb
+          - AOMIC: code/notebooks/01_data_import/01_10_aomic.ipynb
+          - SALD: code/notebooks/01_data_import/01_11_sald.ipynb
+          - IXI: code/notebooks/01_data_import/01_12_ixi.ipynb
+          - ASRB: code/notebooks/01_data_import/01_13_asrb.ipynb
+          - Wayne State: code/notebooks/01_data_import/01_14_wayne.ipynb
+          - ADNI: code/notebooks/01_data_import/01_15_adni.ipynb
+          - OASIS: code/notebooks/01_data_import/01_16_oasis.ipynb
+          - AIBL: code/notebooks/01_data_import/01_17_aibl.ipynb
+          - SINGER: code/notebooks/01_data_import/01_18_singer.ipynb
+          - SG70: code/notebooks/01_data_import/01_19_sg70.ipynb
+          - TCP: code/notebooks/01_data_import/01_20_tcp.ipynb
+          - GUSTO: code/notebooks/01_data_import/01_21_gusto.ipynb
+          - SG Lifespan: code/notebooks/01_data_import/01_22_sglifespan.ipynb
+          - S-PRESTO: code/notebooks/01_data_import/01_23_spresto.ipynb
+          - ABIDE: code/notebooks/01_data_import/01_24_abide.ipynb
+          - CoRR: code/notebooks/01_data_import/01_25_corr.ipynb
+          - SLIM: code/notebooks/01_data_import/01_26_slim.ipynb
+          - MACC: code/notebooks/01_data_import/01_27_macc.ipynb
+      - Data Aggregation:
+          - Aggregating Datasets: code/notebooks/02_data_aggregation/02_01_aggregating_imported_datasets.ipynb
+          - Train/Test Split: code/notebooks/02_data_aggregation/02_02_train_test_split_labels.ipynb
+          - Spectral Encoding: code/notebooks/02_data_aggregation/02_03_encode_thickness_data.ipynb
+      - Direct Model:
+          - Thickness Model: code/notebooks/03_direct_model/03_01_direct_thickness_model.ipynb
+      - Eigenmode Basis:
+          - Connectome Eigenmodes: code/notebooks/04_eigenmode_basis/04_01_cortical_connectome_eigenmodes.ipynb
+      - Spectral Model:
+          - SNM Fit: code/notebooks/05_spectral_model/05_01_spectral_thickness_model.ipynb
+      - Performance Evaluation:
+          - Systematic Evaluations: code/notebooks/06_performance_evaluation/06_01_systematic_performance_evaluations.ipynb
+          - Publication Figures: code/notebooks/06_performance_evaluation/06_02_publication_figures.ipynb
+      - Growth Gradients:
+          - Cortical Growth Gradients: code/notebooks/07_growth_gradients/07_01_growth_gradients.ipynb
+      - Clinical Evaluation:
+          - AD Application: code/notebooks/08_clinical_evaluation/08_01_clinical_application_in_AD.ipynb
+          - AD Cluster Analyses: code/notebooks/08_clinical_evaluation/08_02_clinical_AD_cluster_analyses.ipynb
+      - Data Sharing:
+          - Pretrained Model: code/notebooks/09_data_sharing/09_01_snm_1000_pretrained_model.ipynb
+          - Atlas Charts: code/notebooks/09_data_sharing/09_02_atlas_charts.ipynb
+          - Vertex Charts: code/notebooks/09_data_sharing/09_03_vertex_charts.ipynb
+      - Interactive Visualization:
+          - Vertex-Wise Charts: interactive_visualization.md
+          - Generating the Visualization: code/notebooks/10_interactive_visualization/08_01_interactive_visualizations_plotly.ipynb

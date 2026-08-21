@@ -1,6 +1,6 @@
-# Spectral Normative Modeling of Brain Structure
-
 ![Spectral Normative Modeling](assets/banner.webp)
+
+# Spectral Normative Modeling of Brain Structure
 
 <p align="center">
   <a href="https://doi.org/10.1101/2025.01.16.25320639"><img src="https://img.shields.io/badge/Preprint-medRxiv-red?style=flat-square" alt="medRxiv preprint"></a>
@@ -32,18 +32,24 @@ For tutorials, API reference, and further documentation, visit the [SpectraNorm 
 
 ---
 
+## 🔁 Reproducibility Walkthrough
+
+For a complete reproduction guide, including environment setup, runtime estimates, HPC requirements, and a figure-by-figure mapping from manuscript results to the notebook cells that produce them, see the provided [Reproducibility Walkthrough](reproducibility_walkthrough.md).
+
+---
+
 ## 📁 Repository Structure
 
 The analysis is organized into **9 sequential stages**, each corresponding to a directory of Jupyter notebooks:
 
-### 1. [Data Import Scripts](code/notebooks/01_data_import)
+### 1. [Data Import Scripts](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/01_data_import)
 
 Imports and preprocesses cortical thickness data from several large-scale neuroimaging datasets, comprising over **78,000 healthy brains** from **30 different datasets**. Includes:
 - Applying exclusion criteria to ensure data quality and consistency
 - Processing cortical thickness maps and transforming them to **fs_LR 32k** surface space
 - Preparing data for downstream analysis
 
-### 2. [Data Aggregation Scripts](code/notebooks/02_data_aggregation)
+### 2. [Data Aggregation Scripts](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/02_data_aggregation)
 
 Aggregates and prepares the cleaned data for normative modeling. Includes:
 - Combining cleaned data from multiple datasets
@@ -51,40 +57,40 @@ Aggregates and prepares the cleaned data for normative modeling. Includes:
 - Random train/test split for model validation
 - Generating spectral coefficients of cortical thickness from vertex-wise data
 
-### 3. [Direct Normative Models](code/notebooks/03_direct_model)
+### 3. [Direct Normative Models](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/03_direct_model)
 
 Specifies a direct normative modeling architecture as a backbone for the spectral model. Includes:
 - Implementing a **Hierarchical Bayesian Regression** normative model (via [PyMC](https://www.pymc.io/))
 - Fitting the model for a single variable (mean cortical thickness) as a function of age, sex, and site — used as a sanity check
 - This architecture is reused in subsequent notebooks for both direct and spectral implementations
 
-### 4. [Spectral Basis Construction](code/notebooks/04_eigenmode_basis)
+### 4. [Spectral Basis Construction](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/04_eigenmode_basis)
 
 Generates the spectral basis functions (connectome eigenmodes) used to encode high-resolution cortical phenotypes. Includes:
 - Computing connectome-based brain eigenmodes via SVD of a random walk graph Laplacian shift operator
 
-### 5. [Spectral Normative Model Fitting](code/notebooks/05_spectral_model)
+### 5. [Spectral Normative Model Fitting](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/05_spectral_model)
 
 Fits the full Spectral Normative Model (SNM) using the spectral coefficients of cortical thickness. Includes:
 - Fitting the **Spectral Normative Model (SNM)**
 - Verifying the generation of normative ranges
 - Saving the fitted model for subsequent evaluation
 
-### 6. [Performance Evaluations](code/notebooks/06_performance_evaluation)
+### 6. [Performance Evaluations](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/06_performance_evaluation)
 
 Evaluates SNM performance and benchmarks it against the direct normative model. Includes:
 - Evaluating accuracy across varying numbers of modes and spatial granularities
 - Comparing SNM and direct model performance
 - Reproducing comparative figures from the manuscript
 
-### 7. [Cortical Growth Gradients](code/notebooks/07_growth_gradients)
+### 7. [Cortical Growth Gradients](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/07_growth_gradients)
 
 Uses the fitted SNM to investigate cortical growth gradients across the lifespan. Includes:
 - Mapping three distinct cortical growth gradients
 - Comparing growth gradients to known cortical organization hierarchies
 - Characterizing lifespan trajectories of change
 
-### 8. [Clinical (AD) Evaluations](code/notebooks/08_clinical_evaluation)
+### 8. [Clinical (AD) Evaluations](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/08_clinical_evaluation)
 
 Applies the fitted SNM to a clinical Alzheimer's Disease (AD) sample. Includes:
 - Loading data from the MACC Harmonization dataset
@@ -92,7 +98,7 @@ Applies the fitted SNM to a clinical Alzheimer's Disease (AD) sample. Includes:
 - Mapping individual deviations from the normative model
 - Characterizing the normative signature of AD-related cortical atrophy
 
-### 9. [Data Sharing](code/notebooks/09_data_sharing)
+### 9. [Data Sharing](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/09_data_sharing)
 
 Shares the data produced in this manuscript. Includes:
 - A pretrained SNM for cortical thickness
@@ -123,9 +129,11 @@ snm_1000 = snm.SpectralNormativeModel.load_model(
 )
 ```
 
-For usage examples, refer to [Notebooks 07–09](code/notebooks) and the [SpectraNorm tutorials](https://sina-mansour.github.io/spectranorm/tutorials/).
+For usage examples, refer to [Notebooks 07–09](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks) and the [SpectraNorm tutorials](https://sina-mansour.github.io/spectranorm/tutorials/).
 
 ## 📊 Provided Normative Charts
+
+### Parcellation Normative Charts
 
 Using the pretrained **SNM1000** model (trained on >78,000 healthy brains), we derived cortical thickness normative trajectories across **50 parcellation schemes** covering **23,242 cortical regions** in total. Charts are provided separately for males, females, and the combined sample.
 
@@ -133,56 +141,56 @@ Each item in the table below links to the associated CSV file included in the cu
 
 | Atlas | Combined | Female | Male |
 |---|---|---|---|
-| Desikan-Killiany (`aparc`) | [📄](data/charts/aparc.normative_trajectories.csv) | [📄](data/charts/aparc.female_normative_trajectories.csv) | [📄](data/charts/aparc.male_normative_trajectories.csv) |
-| Destrieux (`aparc.a2009s`) | [📄](data/charts/aparc.a2009s.normative_trajectories.csv) | [📄](data/charts/aparc.a2009s.female_normative_trajectories.csv) | [📄](data/charts/aparc.a2009s.male_normative_trajectories.csv) |
-| DKT (`aparc.DKTatlas40`) | [📄](data/charts/aparc.DKTatlas40.normative_trajectories.csv) | [📄](data/charts/aparc.DKTatlas40.female_normative_trajectories.csv) | [📄](data/charts/aparc.DKTatlas40.male_normative_trajectories.csv) |
-| Von Economo-Koskinas | [📄](data/charts/Economo.normative_trajectories.csv) | [📄](data/charts/Economo.female_normative_trajectories.csv) | [📄](data/charts/Economo.male_normative_trajectories.csv) |
-| Gordon 333 | [📄](data/charts/Gordon333.normative_trajectories.csv) | [📄](data/charts/Gordon333.female_normative_trajectories.csv) | [📄](data/charts/Gordon333.male_normative_trajectories.csv) |
-| HCP MMP 1.0 (Glasser) | [📄](data/charts/HCP_MMP1.0_Glasser.normative_trajectories.csv) | [📄](data/charts/HCP_MMP1.0_Glasser.female_normative_trajectories.csv) | [📄](data/charts/HCP_MMP1.0_Glasser.male_normative_trajectories.csv) |
-| Yeo 7 Networks (N1000) | [📄](data/charts/Yeo2011_7Networks_N1000.normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks_N1000.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks_N1000.male_normative_trajectories.csv) |
-| Yeo 7 Networks (split components) | [📄](data/charts/Yeo2011_7Networks.split_components.normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks.split_components.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_7Networks.split_components.male_normative_trajectories.csv) |
-| Yeo 17 Networks (N1000) | [📄](data/charts/Yeo2011_17Networks_N1000.normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks_N1000.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks_N1000.male_normative_trajectories.csv) |
-| Yeo 17 Networks (split components) | [📄](data/charts/Yeo2011_17Networks.split_components.normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks.split_components.female_normative_trajectories.csv) | [📄](data/charts/Yeo2011_17Networks.split_components.male_normative_trajectories.csv) |
-| Schaefer 100 (7 Networks) | [📄](data/charts/Schaefer2018_100Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_100Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_100Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 100 (17 Networks) | [📄](data/charts/Schaefer2018_100Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_100Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_100Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Schaefer 200 (7 Networks) | [📄](data/charts/Schaefer2018_200Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_200Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_200Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 200 (17 Networks) | [📄](data/charts/Schaefer2018_200Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_200Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_200Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Schaefer 300 (7 Networks) | [📄](data/charts/Schaefer2018_300Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_300Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_300Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 300 (17 Networks) | [📄](data/charts/Schaefer2018_300Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_300Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_300Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Schaefer 400 (7 Networks) | [📄](data/charts/Schaefer2018_400Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_400Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_400Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 400 (17 Networks) | [📄](data/charts/Schaefer2018_400Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_400Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_400Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Schaefer 500 (7 Networks) | [📄](data/charts/Schaefer2018_500Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_500Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_500Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 500 (17 Networks) | [📄](data/charts/Schaefer2018_500Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_500Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_500Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Schaefer 600 (7 Networks) | [📄](data/charts/Schaefer2018_600Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_600Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_600Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 600 (17 Networks) | [📄](data/charts/Schaefer2018_600Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_600Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_600Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Schaefer 700 (7 Networks) | [📄](data/charts/Schaefer2018_700Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_700Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_700Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 700 (17 Networks) | [📄](data/charts/Schaefer2018_700Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_700Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_700Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Schaefer 800 (7 Networks) | [📄](data/charts/Schaefer2018_800Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_800Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_800Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 800 (17 Networks) | [📄](data/charts/Schaefer2018_800Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_800Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_800Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Schaefer 900 (7 Networks) | [📄](data/charts/Schaefer2018_900Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_900Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_900Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 900 (17 Networks) | [📄](data/charts/Schaefer2018_900Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_900Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_900Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Schaefer 1000 (7 Networks) | [📄](data/charts/Schaefer2018_1000Parcels_7Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_1000Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_1000Parcels_7Networks_order.male_normative_trajectories.csv) |
-| Schaefer 1000 (17 Networks) | [📄](data/charts/Schaefer2018_1000Parcels_17Networks_order.normative_trajectories.csv) | [📄](data/charts/Schaefer2018_1000Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](data/charts/Schaefer2018_1000Parcels_17Networks_order.male_normative_trajectories.csv) |
-| Yan 100 (7 Networks) | [📄](data/charts/Yan2023_100Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_100Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_100Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 100 (17 Networks) | [📄](data/charts/Yan2023_100Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_100Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_100Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yan 200 (7 Networks) | [📄](data/charts/Yan2023_200Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_200Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_200Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 200 (17 Networks) | [📄](data/charts/Yan2023_200Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_200Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_200Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yan 300 (7 Networks) | [📄](data/charts/Yan2023_300Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_300Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_300Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 300 (17 Networks) | [📄](data/charts/Yan2023_300Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_300Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_300Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yan 400 (7 Networks) | [📄](data/charts/Yan2023_400Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_400Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_400Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 400 (17 Networks) | [📄](data/charts/Yan2023_400Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_400Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_400Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yan 500 (7 Networks) | [📄](data/charts/Yan2023_500Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_500Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_500Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 500 (17 Networks) | [📄](data/charts/Yan2023_500Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_500Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_500Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yan 600 (7 Networks) | [📄](data/charts/Yan2023_600Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_600Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_600Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 600 (17 Networks) | [📄](data/charts/Yan2023_600Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_600Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_600Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yan 700 (7 Networks) | [📄](data/charts/Yan2023_700Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_700Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_700Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 700 (17 Networks) | [📄](data/charts/Yan2023_700Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_700Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_700Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yan 800 (7 Networks) | [📄](data/charts/Yan2023_800Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_800Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_800Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 800 (17 Networks) | [📄](data/charts/Yan2023_800Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_800Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_800Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yan 900 (7 Networks) | [📄](data/charts/Yan2023_900Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_900Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_900Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 900 (17 Networks) | [📄](data/charts/Yan2023_900Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_900Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_900Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
-| Yan 1000 (7 Networks) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
-| Yan 1000 (17 Networks) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Desikan-Killiany (`aparc`) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.male_normative_trajectories.csv) |
+| Destrieux (`aparc.a2009s`) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.a2009s.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.a2009s.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.a2009s.male_normative_trajectories.csv) |
+| DKT (`aparc.DKTatlas40`) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.DKTatlas40.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.DKTatlas40.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.DKTatlas40.male_normative_trajectories.csv) |
+| Von Economo-Koskinas | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Economo.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Economo.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Economo.male_normative_trajectories.csv) |
+| Gordon 333 | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Gordon333.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Gordon333.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Gordon333.male_normative_trajectories.csv) |
+| HCP MMP 1.0 (Glasser) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/HCP_MMP1.0_Glasser.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/HCP_MMP1.0_Glasser.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/HCP_MMP1.0_Glasser.male_normative_trajectories.csv) |
+| Yeo 7 Networks (N1000) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks_N1000.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks_N1000.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks_N1000.male_normative_trajectories.csv) |
+| Yeo 7 Networks (split components) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks.split_components.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks.split_components.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks.split_components.male_normative_trajectories.csv) |
+| Yeo 17 Networks (N1000) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks_N1000.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks_N1000.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks_N1000.male_normative_trajectories.csv) |
+| Yeo 17 Networks (split components) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks.split_components.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks.split_components.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks.split_components.male_normative_trajectories.csv) |
+| Schaefer 100 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 100 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Schaefer 200 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 200 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Schaefer 300 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 300 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Schaefer 400 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 400 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Schaefer 500 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 500 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Schaefer 600 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 600 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Schaefer 700 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 700 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Schaefer 800 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 800 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Schaefer 900 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 900 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Schaefer 1000 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_7Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_7Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_7Networks_order.male_normative_trajectories.csv) |
+| Schaefer 1000 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_17Networks_order.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_17Networks_order.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_17Networks_order.male_normative_trajectories.csv) |
+| Yan 100 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 100 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Yan 200 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 200 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Yan 300 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 300 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Yan 400 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 400 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Yan 500 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 500 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Yan 600 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 600 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Yan 700 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 700 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Yan 800 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 800 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Yan 900 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 900 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
+| Yan 1000 (7 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.male_normative_trajectories.csv) |
+| Yan 1000 (17 Networks) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.female_normative_trajectories.csv) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.male_normative_trajectories.csv) |
 
 ### Vertex-Wise Normative Charts
 
@@ -190,7 +198,7 @@ In addition to the parcellation-based charts, we also provide normative trajecto
 
 | Resolution | Combined | Female | Male |
 |---|---|---|---|
-| Vertex-wise (`fs_LR 32k`) | [📄](data/charts/vertex-wise.fs_LR_32k.normative_trajectories.joblib) | [📄](data/charts/vertex-wise.fs_LR_32k.female_normative_trajectories.joblib) | [📄](data/charts/vertex-wise.fs_LR_32k.male_normative_trajectories.joblib) |
+| Vertex-wise (`fs_LR 32k`) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/vertex-wise.fs_LR_32k.normative_trajectories.joblib) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/vertex-wise.fs_LR_32k.female_normative_trajectories.joblib) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/vertex-wise.fs_LR_32k.male_normative_trajectories.joblib) |
 
 These are stored as `.joblib` files and can be loaded directly into Python.
 
@@ -203,15 +211,15 @@ vertex_charts = joblib.load("/<path-to-file>/vertex-wise.fs_LR_32k.normative_tra
 
 ## 🗺️ Cortical Maps
 
-The cortical maps derived in this study are publicly available in the [`data/brainmaps/`](data/brainmaps) directory. Each map is provided in both `.dscalar.nii` (CIFTI) and `.npy` (NumPy) formats.
+The cortical maps derived in this study are publicly available in the [`data/brainmaps/`](https://github.com/sina-mansour/normative_brain_charts/tree/main/data/brainmaps) directory. Each map is provided in both `.dscalar.nii` (CIFTI) and `.npy` (NumPy) formats.
 
 | Map | CIFTI | NumPy |
 |---|---|---|
-| First Thickness Growth Gradient | [📄](data/brainmaps/First_Thickness_Growth_Gradient.dscalar.nii) | [📄](data/brainmaps/First_Thickness_Growth_Gradient.npy) |
-| Second Thickness Growth Gradient | [📄](data/brainmaps/Second_Thickness_Growth_Gradient.dscalar.nii) | [📄](data/brainmaps/Second_Thickness_Growth_Gradient.npy) |
-| Third Thickness Growth Gradient | [📄](data/brainmaps/Third_Thickness_Growth_Gradient.dscalar.nii) | [📄](data/brainmaps/Third_Thickness_Growth_Gradient.npy) |
-| Developmental Cortical Pruning | [📄](data/brainmaps/Developmental_Cortical_Pruning.dscalar.nii) | [📄](data/brainmaps/Developmental_Cortical_Pruning.npy) |
-| Aging Thickness Decline | [📄](data/brainmaps/Aging_Thickness_Decline.dscalar.nii) | [📄](data/brainmaps/Aging_Thickness_Decline.npy) |
+| First Thickness Growth Gradient | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/First_Thickness_Growth_Gradient.dscalar.nii) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/First_Thickness_Growth_Gradient.npy) |
+| Second Thickness Growth Gradient | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Second_Thickness_Growth_Gradient.dscalar.nii) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Second_Thickness_Growth_Gradient.npy) |
+| Third Thickness Growth Gradient | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Third_Thickness_Growth_Gradient.dscalar.nii) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Third_Thickness_Growth_Gradient.npy) |
+| Developmental Cortical Pruning | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Developmental_Cortical_Pruning.dscalar.nii) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Developmental_Cortical_Pruning.npy) |
+| Aging Thickness Decline | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Aging_Thickness_Decline.dscalar.nii) | [📄](https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Aging_Thickness_Decline.npy) |
 
 The `.dscalar.nii` files can be visualized directly in [Connectome Workbench](https://www.humanconnectome.org/software/connectome-workbench), while the `.npy` files can be loaded in Python via `numpy.load()`.
 
@@ -221,10 +229,10 @@ The `.dscalar.nii` files can be visualized directly in [Connectome Workbench](ht
 
 This repository is **dual licensed**:
 
-- **Non-commercial / Academic use**: [GNU AGPLv3](LICENSE)
+- **Non-commercial / Academic use**: [GNU AGPLv3](https://github.com/sina-mansour/normative_brain_charts/tree/main/LICENSE)
 - **Commercial use**: A separate commercial license is required
 
-See the [LICENSE](LICENSE) file for full details.
+See the [LICENSE](https://github.com/sina-mansour/normative_brain_charts/tree/main/LICENSE) file for full details.
 
 ---
 

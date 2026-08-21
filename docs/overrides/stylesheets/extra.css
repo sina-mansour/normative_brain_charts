@@ -1,0 +1,53 @@
+.md-grid {
+  max-width: 1600px;  /* default is 1220px */
+}
+
+/* Hide input/output prompts */
+.jp-InputPrompt, .jp-OutputPrompt,
+.input_prompt, .output_prompt,
+.jupyter-cell .prompt {
+  display: none !important;
+}
+
+/* Cell anchor links */
+/* Positioning contexts */
+.jp-CodeCell,
+.jp-MarkdownCell,
+.jp-Cell-outputWrapper {
+  position: relative;
+}
+
+/* Shared link styling */
+.cell-headerlink {
+  position: absolute;
+  top: 0.25em;
+  opacity: 0;
+  text-decoration: none;
+  font-size: 1em;
+  color: var(--md-default-fg-color--lighter);
+  transition: opacity 0.15s;
+  z-index: 2;  /* sit above the code background but below modals */
+}
+
+.cell-headerlink:hover {
+  color: var(--md-accent-fg-color);
+}
+
+/* Cell-level anchor: inside the cell, top-right, clear of the copy button. */
+.jp-CodeCell > .cell-headerlink,
+.jp-MarkdownCell > .cell-headerlink {
+  right: 2.5em;  /* bump this if it still overlaps the copy button */
+  top: 0.75em;
+}
+
+/* Output-level anchor: top-right of the output region (no copy button there). */
+.jp-Cell-outputWrapper > .cell-headerlink {
+  right: 0.5em;
+}
+
+/* Hover */
+.jp-CodeCell:hover > .cell-headerlink,
+.jp-MarkdownCell:hover > .cell-headerlink,
+.jp-Cell-outputWrapper:hover > .cell-headerlink {
+  opacity: 1;
+}
