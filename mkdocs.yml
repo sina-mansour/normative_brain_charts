@@ -5,7 +5,7 @@ site_author: Sina Mansour L.
 
 repo_url: https://github.com/sina-mansour/normative_brain_charts/
 repo_name: sina-mansour/normative_brain_charts
-# edit_uri: edit/main/
+edit_uri: blob/main/
 
 docs_dir: docs
 site_dir: site
@@ -61,9 +61,11 @@ theme:
   name: material
   icon:
     logo: material/code-greater-than
+    edit: material/github
   favicon: assets/favicon.svg
   custom_dir: docs/overrides
   features:
+    - content.action.edit
     - navigation.sections
     - navigation.indexes
     - navigation.top
@@ -127,13 +129,17 @@ watch:
   - ./code
   - ./README.md
   - ./reproducibility_walkthrough.md
+  - ./interactive_visualization.md
+  - ./data_import.md
   - ./mkdocs.yml
+  - ./docs/overrides
 
 nav:
   - SNM Home: README.md
   - Reproducibility Walkthrough: reproducibility_walkthrough.md
   - Pipeline:
       - Data Import:
+          - data_import.md
           - HCP Young Adult: code/notebooks/01_data_import/01_01_hcp_young_adult.ipynb
           - HCP Development: code/notebooks/01_data_import/01_02_hcp_development.ipynb
           - HCP Aging: code/notebooks/01_data_import/01_03_hcp_aging.ipynb

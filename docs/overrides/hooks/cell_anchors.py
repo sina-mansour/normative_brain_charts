@@ -1,9 +1,21 @@
 """
 MkDocs hook: add stable IDs to every Jupyter cell on notebook pages.
 
-- Each cell (code or markdown) gets `id="cell-N"`, numbered in document order.
-- Code cell output blocks additionally get `id="cell-N-output"`.
+- Each cell (code or markdown) gets `id="nb-cell-N"`, numbered in document order.
+- Code cell output blocks additionally get `id="nb-cell-N-output"`.
 - A small anchor link is injected on hover for easy link-grabbing.
+
+Note: the `nb-` prefix is required. mkdocs-jupyter's clipboard buttons already
+use bare `cell-N` IDs on the hidden elements holding the copyable text, and
+`<clipboard-copy for="cell-N">` resolves them via getElementById. Reusing that
+namespace silently breaks the copy buttons.
+
+Note on nbconvert's markup: code cells are emitted as two nested divs both
+carrying `jp-CodeCell` -- an outer wrapper with no id, and an inner one holding
+nbconvert's own `id="cell-id=<uuid>"`. Markdown cells are emitted as a single
+div carrying that id. We therefore anchor code cells only when no id is present
+(matching the outer wrapper) and markdown cells unconditionally, replacing the
+nbconvert id. Nothing links to the nbconvert UUIDs.
 """
 
 import re
@@ -19,11 +31,12 @@ _TARGET_RE = re.compile(
     re.IGNORECASE,
 )
 
+_HAS_ID_RE = re.compile(r'\bid\s*=\s*"')
+
 
 def _inject_id(attrs, anchor_id):
-    """Return a new opening <div ...> with id injected, or None if one exists."""
-    if re.search(r'\bid\s*=\s*"', attrs):
-        return None
+    """Return a new opening <div ...> with id set, replacing any existing one."""
+    attrs = re.sub(r'\s*\bid\s*=\s*"[^"]*"', '', attrs)
     return f'<div id="{anchor_id}"{attrs}>'
 
 
@@ -59,21 +72,27 @@ def on_page_content(html, page, config, files, **kwargs):
         class_match = re.search(r'class="([^"]*)"', attrs)
         classes = class_match.group(1).split() if class_match else []
 
-        if "jp-CodeCell" in classes or "jp-MarkdownCell" in classes:
+        if "jp-CodeCell" in classes:
+            # Skip the inner duplicate wrapper, identified by its nbconvert id.
+            if _HAS_ID_RE.search(attrs):
+                return match.group(0)
             state["n"] += 1
             n = state["n"]
             state["current"] = n
-            replacement = _inject_id(attrs, f"cell-{n}")
-            if replacement is None:
-                return match.group(0)
-            return replacement + _headerlink(f"cell-{n}", f"cell {n}")
+            return (_inject_id(attrs, f"nb-cell-{n}")
+                    + _headerlink(f"nb-cell-{n}", f"cell {n}"))
+
+        if "jp-MarkdownCell" in classes:
+            state["n"] += 1
+            n = state["n"]
+            state["current"] = n
+            return (_inject_id(attrs, f"nb-cell-{n}")
+                    + _headerlink(f"nb-cell-{n}", f"cell {n}"))
 
         if "jp-Cell-outputWrapper" in classes and state["current"] is not None:
             n = state["current"]
-            replacement = _inject_id(attrs, f"cell-{n}-output")
-            if replacement is None:
-                return match.group(0)
-            return replacement + _headerlink(f"cell-{n}-output", f"cell {n} output")
+            return (_inject_id(attrs, f"nb-cell-{n}-output")
+                    + _headerlink(f"nb-cell-{n}-output", f"cell {n} output"))
 
         return match.group(0)
 

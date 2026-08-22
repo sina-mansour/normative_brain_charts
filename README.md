@@ -11,7 +11,7 @@
 
 This repository provides the complete, reproducible analysis code accompanying the manuscript:
 
-> **Mansour L., S., et al. (2025). Spectral Normative Modeling of Brain Structure. *medRxiv*.** DOI: [10.1101/2025.01.16.25320639](https://doi.org/10.1101/2025.01.16.25320639)
+> **Mansour L., S., et al. (2026). Spectral Normative Modeling of Brain Structure. *medRxiv*.** DOI: [10.1101/2025.01.16.25320639](https://doi.org/10.1101/2025.01.16.25320639)
 
 The study introduces **Spectral Normative Models (SNMs)** — a framework for normative modeling of high-dimensional cortical phenotypes using spectral (eigenmode-based) representations. The repository contains every step of the analysis pipeline, from raw data preprocessing through model fitting, performance evaluation, and clinical application, enabling full reproduction of all manuscript figures and results.
 
@@ -42,14 +42,14 @@ For a complete reproduction guide, including environment setup, runtime estimate
 
 The analysis is organized into **9 sequential stages**, each corresponding to a directory of Jupyter notebooks:
 
-### 1. [Data Import Scripts](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/01_data_import)
+### 1. [Data Import Scripts](data_import.md)
 
 Imports and preprocesses cortical thickness data from several large-scale neuroimaging datasets, comprising over **78,000 healthy brains** from **30 different datasets**. Includes:
 - Applying exclusion criteria to ensure data quality and consistency
 - Processing cortical thickness maps and transforming them to **fs_LR 32k** surface space
 - Preparing data for downstream analysis
 
-### 2. [Data Aggregation Scripts](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/02_data_aggregation)
+### 2. [Data Aggregation Scripts](code/notebooks/02_data_aggregation/02_01_aggregating_imported_datasets.ipynb)
 
 Aggregates and prepares the cleaned data for normative modeling. Includes:
 - Combining cleaned data from multiple datasets
@@ -57,54 +57,55 @@ Aggregates and prepares the cleaned data for normative modeling. Includes:
 - Random train/test split for model validation
 - Generating spectral coefficients of cortical thickness from vertex-wise data
 
-### 3. [Direct Normative Models](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/03_direct_model)
+### 3. [Direct Normative Models](code/notebooks/03_direct_model/03_01_direct_thickness_model.ipynb)
 
 Specifies a direct normative modeling architecture as a backbone for the spectral model. Includes:
 - Implementing a **Hierarchical Bayesian Regression** normative model (via [PyMC](https://www.pymc.io/))
 - Fitting the model for a single variable (mean cortical thickness) as a function of age, sex, and site — used as a sanity check
 - This architecture is reused in subsequent notebooks for both direct and spectral implementations
 
-### 4. [Spectral Basis Construction](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/04_eigenmode_basis)
+### 4. [Spectral Basis Construction](code/notebooks/04_eigenmode_basis/04_01_cortical_connectome_eigenmodes.ipynb)
 
 Generates the spectral basis functions (connectome eigenmodes) used to encode high-resolution cortical phenotypes. Includes:
 - Computing connectome-based brain eigenmodes via SVD of a random walk graph Laplacian shift operator
 
-### 5. [Spectral Normative Model Fitting](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/05_spectral_model)
+### 5. [Spectral Normative Model Fitting](code/notebooks/05_spectral_model/05_01_spectral_thickness_model.ipynb)
 
 Fits the full Spectral Normative Model (SNM) using the spectral coefficients of cortical thickness. Includes:
 - Fitting the **Spectral Normative Model (SNM)**
 - Verifying the generation of normative ranges
 - Saving the fitted model for subsequent evaluation
 
-### 6. [Performance Evaluations](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/06_performance_evaluation)
+### 6. [Performance Evaluations](code/notebooks/06_performance_evaluation/06_01_systematic_performance_evaluations.ipynb)
 
 Evaluates SNM performance and benchmarks it against the direct normative model. Includes:
 - Evaluating accuracy across varying numbers of modes and spatial granularities
 - Comparing SNM and direct model performance
 - Reproducing comparative figures from the manuscript
 
-### 7. [Cortical Growth Gradients](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/07_growth_gradients)
+### 7. [Cortical Growth Gradients](code/notebooks/07_growth_gradients/07_01_growth_gradients.ipynb)
 
 Uses the fitted SNM to investigate cortical growth gradients across the lifespan. Includes:
 - Mapping three distinct cortical growth gradients
 - Comparing growth gradients to known cortical organization hierarchies
 - Characterizing lifespan trajectories of change
 
-### 8. [Clinical (AD) Evaluations](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/08_clinical_evaluation)
+### 8. [Clinical (AD) Evaluations](code/notebooks/08_clinical_evaluation/08_01_clinical_application_in_AD.ipynb)
 
 Applies the fitted SNM to a clinical Alzheimer's Disease (AD) sample. Includes:
 - Loading data from the MACC Harmonization dataset
 - Fine-tuning the healthy SNM via normative adaptation (site harmonization)
 - Mapping individual deviations from the normative model
 - Characterizing the normative signature of AD-related cortical atrophy
+- Assessing whether individual deviation patterns support discrete AD subtypes ([clusterability analyses](code/notebooks/08_clinical_evaluation/08_02_clinical_AD_cluster_analyses.ipynb))
 
-### 9. [Data Sharing](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks/09_data_sharing)
+### 9. [Data Sharing](code/notebooks/09_data_sharing/09_01_snm_1000_pretrained_model.ipynb)
 
 Shares the data produced in this manuscript. Includes:
 - A pretrained SNM for cortical thickness
 - Normative brain charts for multiple cortical parcellations
 
-> 🎨 Explore an **[interactive visualization of the pretrained SNM1000 vertex resolution charts](https://sina-mansour.github.io/normative_brain_charts/code/notebooks/10_interactive_visualization/08_01_interactive_visualization.html)**
+> 🎨 Explore an **[interactive visualization of the pretrained SNM1000 vertex resolution charts](https://sina-mansour.github.io/normative_brain_charts/interactive_visualization/)**
 
 ---
 
@@ -129,7 +130,7 @@ snm_1000 = snm.SpectralNormativeModel.load_model(
 )
 ```
 
-For usage examples, refer to [Notebooks 07–09](https://github.com/sina-mansour/normative_brain_charts/tree/main/code/notebooks) and the [SpectraNorm tutorials](https://sina-mansour.github.io/spectranorm/tutorials/).
+For usage examples, refer to the notebooks on [growth gradients](code/notebooks/07_growth_gradients/07_01_growth_gradients.ipynb), [clinical application](code/notebooks/08_clinical_evaluation/08_01_clinical_application_in_AD.ipynb), and [data sharing](code/notebooks/09_data_sharing/09_01_snm_1000_pretrained_model.ipynb), as well as the [SpectraNorm tutorials](https://sina-mansour.github.io/spectranorm/tutorials/).
 
 ## 📊 Provided Normative Charts
 

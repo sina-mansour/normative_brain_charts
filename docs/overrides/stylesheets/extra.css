@@ -9,18 +9,26 @@
   display: none !important;
 }
 
-/* Cell anchor links */
-/* Positioning contexts */
+/* ---------------------------------------------------------------------------
+   Cell anchor links
+   --------------------------------------------------------------------------- */
+
+/* Positioning context, plus reserved space at the right edge for the anchor.
+   Code cells need more room, as the copy button occupies their top-right. */
 .jp-CodeCell,
 .jp-MarkdownCell,
 .jp-Cell-outputWrapper {
   position: relative;
+  padding-right: 2em;
+}
+
+.jp-CodeCell {
+  padding-right: 4.5em;
 }
 
 /* Shared link styling */
 .cell-headerlink {
   position: absolute;
-  top: 0.25em;
   opacity: 0;
   text-decoration: none;
   font-size: 1em;
@@ -33,16 +41,17 @@
   color: var(--md-accent-fg-color);
 }
 
-/* Cell-level anchor: inside the cell, top-right, clear of the copy button. */
-.jp-CodeCell > .cell-headerlink,
-.jp-MarkdownCell > .cell-headerlink {
-  right: 2.5em;  /* bump this if it still overlaps the copy button */
-  top: 0.75em;
+/* Markdown cells and outputs: anchor at the right edge of the reserved space. */
+.jp-MarkdownCell > .cell-headerlink,
+.jp-Cell-outputWrapper > .cell-headerlink {
+  right: 0.4em;
+  top: 0.35em;
 }
 
-/* Output-level anchor: top-right of the output region (no copy button there). */
-.jp-Cell-outputWrapper > .cell-headerlink {
-  right: 0.5em;
+/* Code cells: sit to the left of the copy button. */
+.jp-CodeCell > .cell-headerlink {
+  right: 2.0em;
+  top: 0.75em;
 }
 
 /* Hover */
@@ -50,4 +59,125 @@
 .jp-MarkdownCell:hover > .cell-headerlink,
 .jp-Cell-outputWrapper:hover > .cell-headerlink {
   opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Anchor navigation
+   --------------------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Applies to any scroll into these elements, not only :target ones, so that
+   the programmatic scroll in main.html clears the header too. */
+.jp-CodeCell,
+.jp-MarkdownCell,
+.jp-Cell-outputWrapper {
+  scroll-margin-top: 4rem;  /* clear the sticky header */
+}
+
+@keyframes cell-target-flash {
+  0%   { background-color: var(--md-accent-fg-color--transparent);
+         box-shadow: 0 0 0 3px var(--md-accent-fg-color); }
+  70%  { background-color: var(--md-accent-fg-color--transparent);
+         box-shadow: 0 0 0 3px var(--md-accent-fg-color); }
+  100% { background-color: transparent;
+         box-shadow: 0 0 0 3px transparent; }
+}
+
+.jp-CodeCell:target,
+.jp-MarkdownCell:target,
+.jp-Cell-outputWrapper:target {
+  animation: cell-target-flash 2s ease-out;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .jp-CodeCell:target,
+  .jp-MarkdownCell:target,
+  .jp-Cell-outputWrapper:target {
+    animation: none;
+    box-shadow: 0 0 0 3px var(--md-accent-fg-color);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Loading overlay for cell-anchored notebook pages
+
+   Attached to `body`, not `html`, because Material sets `data-md-color-scheme`
+   on the body element; the palette custom properties are not in scope on the
+   root element.
+   --------------------------------------------------------------------------- */
+
+/* Hand scroll control to the script, so its timed animation is not overridden
+   by the smooth scrolling declared above. */
+html.nb-anchor-scrolling {
+  scroll-behavior: auto;
+}
+
+/* Hold the :target flash until the reveal scroll has finished. Removing the
+   last of these classes changes animation-name from none to
+   cell-target-flash, which starts it. */
+html.nb-anchor-loading .jp-CodeCell:target,
+html.nb-anchor-loading .jp-MarkdownCell:target,
+html.nb-anchor-loading .jp-Cell-outputWrapper:target,
+html.nb-anchor-scrolling .jp-CodeCell:target,
+html.nb-anchor-scrolling .jp-MarkdownCell:target,
+html.nb-anchor-scrolling .jp-Cell-outputWrapper:target {
+  animation: none;
+}
+
+/* The shade carries its message from the first frame, so nothing appears
+   partway through the wait. */
+html.nb-anchor-loading body::before {
+  content: "Loading notebook, jumping to the linked cell shortly";
+  position: fixed;
+  inset: 0;
+  z-index: 100;  /* above the sticky header, below Material's dialogs */
+  background: var(--md-default-bg-color);
+  opacity: 0.94;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8rem;
+  font-family: var(--md-text-font-family);
+  font-size: 0.75rem;
+  color: var(--md-default-fg-color--light);
+  text-align: center;
+}
+
+html.nb-anchor-loading body::after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 101;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: -1.25rem 0 0 -1.25rem;
+  border: 3px solid var(--md-default-fg-color--lightest);
+  border-top-color: var(--md-primary-fg-color);
+  border-radius: 50%;
+  animation: nb-spin 0.8s linear infinite;
+}
+
+@keyframes nb-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Fade out rather than vanish. */
+html.nb-anchor-settled body::before,
+html.nb-anchor-settled body::after {
+  animation: nb-fade 0.25s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes nb-fade {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.nb-anchor-loading body::after { animation: none; }
 }

@@ -1,5 +1,102 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+  {{ super() }}
+  <script>
+    // Loading overlay for cell-anchored notebook pages.
+    //
+    // Runs during head parsing, before any body content arrives, so the
+    // overlay paints with the first frame. Engages only when the URL carries a
+    // cell anchor, so ordinary navigation is unaffected.
+    (function () {
+      // --- Tunables -------------------------------------------------------
+      var SCROLL_MS = 900;   // duration of the reveal scroll
+      var LEAD_IN   = 1.2;   // how far above the target to start, in viewports
+      var TIMEOUT_MS = 20000;
+      // --------------------------------------------------------------------
+
+      var hash = window.location.hash;
+      if (!/^#nb-cell-/.test(hash)) return;
+
+      var root = document.documentElement;
+      root.classList.add('nb-anchor-loading');
+
+      function headerOffset() {
+        // Matches the 4rem scroll-margin-top set in extra.css.
+        return parseFloat(getComputedStyle(root).fontSize) * 4;
+      }
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function animateScroll(fromY, toY, ms, onDone) {
+        var start = null;
+        var delta = toY - fromY;
+        function step(ts) {
+          if (start === null) start = ts;
+          var t = Math.min((ts - start) / ms, 1);
+          window.scrollTo(0, fromY + delta * easeInOutCubic(t));
+          if (t < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            onDone();
+          }
+        }
+        window.requestAnimationFrame(step);
+      }
+
+      var done = false;
+      function finish() {
+        if (done) return;
+        done = true;
+
+        var el = document.getElementById(hash.slice(1));
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // nb-anchor-scrolling disables CSS smooth scrolling, so the manual
+        // animation below is not fought by the stylesheet, and keeps the
+        // :target flash suppressed until the scroll has finished.
+        root.classList.add('nb-anchor-scrolling');
+        root.classList.remove('nb-anchor-loading');
+        root.classList.add('nb-anchor-settled');
+
+        function release() {
+          root.classList.remove('nb-anchor-scrolling');
+        }
+
+        if (!el) { release(); return; }
+
+        var targetY = el.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+        targetY = Math.max(0, Math.min(targetY,
+          document.documentElement.scrollHeight - window.innerHeight));
+
+        if (reduce) {
+          window.scrollTo(0, targetY);
+          release();
+          return;
+        }
+
+        // Start a little above the target so there is a visible, unhurried
+        // approach regardless of how far down the page the cell sits.
+        var startY = Math.max(0, targetY - LEAD_IN * window.innerHeight);
+        window.scrollTo(0, startY);
+        animateScroll(startY, targetY, SCROLL_MS, release);
+      }
+
+      // Normal path: all content parsed and all images decoded.
+      window.addEventListener('load', function () { setTimeout(finish, 120); });
+
+      // Escape hatches, so a stalled asset can never leave the page shaded.
+      setTimeout(finish, TIMEOUT_MS);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') finish();
+      });
+      document.addEventListener('click', finish, { once: true });
+    })();
+  </script>
+{% endblock extrahead %}
+
 {% block content %}
   {% if page.nb_url %}
     <a href="{{ page.nb_url }}" title="Download Notebook" class="md-content__button md-icon">
