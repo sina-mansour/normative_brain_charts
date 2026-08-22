@@ -2724,50 +2724,68 @@
 <h2 id="repository-structure">📁 Repository Structure<a class="headerlink" href="#repository-structure" title="Permanent link">&para;</a></h2>
 <p>The analysis is organized into <strong>9 sequential stages</strong>, each corresponding to a directory of Jupyter notebooks:</p>
 <h3 id="1-data-import-scripts">1. <a href="data_import/">Data Import Scripts</a><a class="headerlink" href="#1-data-import-scripts" title="Permanent link">&para;</a></h3>
-<p>Imports and preprocesses cortical thickness data from several large-scale neuroimaging datasets, comprising over <strong>78,000 healthy brains</strong> from <strong>30 different datasets</strong>. Includes:
-- Applying exclusion criteria to ensure data quality and consistency
-- Processing cortical thickness maps and transforming them to <strong>fs_LR 32k</strong> surface space
-- Preparing data for downstream analysis</p>
+<p>Imports and preprocesses cortical thickness data from several large-scale neuroimaging datasets, comprising over <strong>78,000 healthy brains</strong> from <strong>30 different datasets</strong>. Includes:</p>
+<ul>
+<li>Applying exclusion criteria to ensure data quality and consistency</li>
+<li>Processing cortical thickness maps and transforming them to <strong>fs_LR 32k</strong> surface space</li>
+<li>Preparing data for downstream analysis</li>
+</ul>
 <h3 id="2-data-aggregation-scripts">2. <a href="code/notebooks/02_data_aggregation/02_01_aggregating_imported_datasets/">Data Aggregation Scripts</a><a class="headerlink" href="#2-data-aggregation-scripts" title="Permanent link">&para;</a></h3>
-<p>Aggregates and prepares the cleaned data for normative modeling. Includes:
-- Combining cleaned data from multiple datasets
-- Final round of quality control
-- Random train/test split for model validation
-- Generating spectral coefficients of cortical thickness from vertex-wise data</p>
+<p>Aggregates and prepares the cleaned data for normative modeling. Includes:</p>
+<ul>
+<li>Combining cleaned data from multiple datasets</li>
+<li>Final round of quality control</li>
+<li>Random train/test split for model validation</li>
+<li>Generating spectral coefficients of cortical thickness from vertex-wise data</li>
+</ul>
 <h3 id="3-direct-normative-models">3. <a href="code/notebooks/03_direct_model/03_01_direct_thickness_model/">Direct Normative Models</a><a class="headerlink" href="#3-direct-normative-models" title="Permanent link">&para;</a></h3>
-<p>Specifies a direct normative modeling architecture as a backbone for the spectral model. Includes:
-- Implementing a <strong>Hierarchical Bayesian Regression</strong> normative model (via <a href="https://www.pymc.io/" target="_blank" rel="noopener">PyMC</a>)
-- Fitting the model for a single variable (mean cortical thickness) as a function of age, sex, and site — used as a sanity check
-- This architecture is reused in subsequent notebooks for both direct and spectral implementations</p>
+<p>Specifies a direct normative modeling architecture as a backbone for the spectral model. Includes:</p>
+<ul>
+<li>Implementing a <strong>Hierarchical Bayesian Regression</strong> normative model (via <a href="https://www.pymc.io/" target="_blank" rel="noopener">PyMC</a>)</li>
+<li>Fitting the model for a single variable (mean cortical thickness) as a function of age, sex, and site — used as a sanity check</li>
+<li>This architecture is reused in subsequent notebooks for both direct and spectral implementations</li>
+</ul>
 <h3 id="4-spectral-basis-construction">4. <a href="code/notebooks/04_eigenmode_basis/04_01_cortical_connectome_eigenmodes/">Spectral Basis Construction</a><a class="headerlink" href="#4-spectral-basis-construction" title="Permanent link">&para;</a></h3>
-<p>Generates the spectral basis functions (connectome eigenmodes) used to encode high-resolution cortical phenotypes. Includes:
-- Computing connectome-based brain eigenmodes via SVD of a random walk graph Laplacian shift operator</p>
+<p>Generates the spectral basis functions (connectome eigenmodes) used to encode high-resolution cortical phenotypes. Includes:</p>
+<ul>
+<li>Computing connectome-based brain eigenmodes via SVD of a random walk graph Laplacian shift operator</li>
+</ul>
 <h3 id="5-spectral-normative-model-fitting">5. <a href="code/notebooks/05_spectral_model/05_01_spectral_thickness_model/">Spectral Normative Model Fitting</a><a class="headerlink" href="#5-spectral-normative-model-fitting" title="Permanent link">&para;</a></h3>
-<p>Fits the full Spectral Normative Model (SNM) using the spectral coefficients of cortical thickness. Includes:
-- Fitting the <strong>Spectral Normative Model (SNM)</strong>
-- Verifying the generation of normative ranges
-- Saving the fitted model for subsequent evaluation</p>
+<p>Fits the full Spectral Normative Model (SNM) using the spectral coefficients of cortical thickness. Includes:</p>
+<ul>
+<li>Fitting the <strong>Spectral Normative Model (SNM)</strong></li>
+<li>Verifying the generation of normative ranges</li>
+<li>Saving the fitted model for subsequent evaluation</li>
+</ul>
 <h3 id="6-performance-evaluations">6. <a href="code/notebooks/06_performance_evaluation/06_01_systematic_performance_evaluations/">Performance Evaluations</a><a class="headerlink" href="#6-performance-evaluations" title="Permanent link">&para;</a></h3>
-<p>Evaluates SNM performance and benchmarks it against the direct normative model. Includes:
-- Evaluating accuracy across varying numbers of modes and spatial granularities
-- Comparing SNM and direct model performance
-- Reproducing comparative figures from the manuscript</p>
+<p>Evaluates SNM performance and benchmarks it against the direct normative model. Includes:</p>
+<ul>
+<li>Evaluating accuracy across varying numbers of modes and spatial granularities</li>
+<li>Comparing SNM and direct model performance</li>
+<li>Reproducing comparative figures from the manuscript</li>
+</ul>
 <h3 id="7-cortical-growth-gradients">7. <a href="code/notebooks/07_growth_gradients/07_01_growth_gradients/">Cortical Growth Gradients</a><a class="headerlink" href="#7-cortical-growth-gradients" title="Permanent link">&para;</a></h3>
-<p>Uses the fitted SNM to investigate cortical growth gradients across the lifespan. Includes:
-- Mapping three distinct cortical growth gradients
-- Comparing growth gradients to known cortical organization hierarchies
-- Characterizing lifespan trajectories of change</p>
+<p>Uses the fitted SNM to investigate cortical growth gradients across the lifespan. Includes:</p>
+<ul>
+<li>Mapping three distinct cortical growth gradients</li>
+<li>Comparing growth gradients to known cortical organization hierarchies</li>
+<li>Characterizing lifespan trajectories of change</li>
+</ul>
 <h3 id="8-clinical-ad-evaluations">8. <a href="code/notebooks/08_clinical_evaluation/08_01_clinical_application_in_AD/">Clinical (AD) Evaluations</a><a class="headerlink" href="#8-clinical-ad-evaluations" title="Permanent link">&para;</a></h3>
-<p>Applies the fitted SNM to a clinical Alzheimer's Disease (AD) sample. Includes:
-- Loading data from the MACC Harmonization dataset
-- Fine-tuning the healthy SNM via normative adaptation (site harmonization)
-- Mapping individual deviations from the normative model
-- Characterizing the normative signature of AD-related cortical atrophy
-- Assessing whether individual deviation patterns support discrete AD subtypes (<a href="code/notebooks/08_clinical_evaluation/08_02_clinical_AD_cluster_analyses/">clusterability analyses</a>)</p>
+<p>Applies the fitted SNM to a clinical Alzheimer's Disease (AD) sample. Includes:</p>
+<ul>
+<li>Loading data from the MACC Harmonization dataset</li>
+<li>Fine-tuning the healthy SNM via normative adaptation (site harmonization)</li>
+<li>Mapping individual deviations from the normative model</li>
+<li>Characterizing the normative signature of AD-related cortical atrophy</li>
+<li>Assessing whether individual deviation patterns support discrete AD subtypes (<a href="code/notebooks/08_clinical_evaluation/08_02_clinical_AD_cluster_analyses/">clusterability analyses</a>)</li>
+</ul>
 <h3 id="9-data-sharing">9. <a href="code/notebooks/09_data_sharing/09_01_snm_1000_pretrained_model/">Data Sharing</a><a class="headerlink" href="#9-data-sharing" title="Permanent link">&para;</a></h3>
-<p>Shares the data produced in this manuscript. Includes:
-- A pretrained SNM for cortical thickness
-- Normative brain charts for multiple cortical parcellations</p>
+<p>Shares the data produced in this manuscript. Includes:</p>
+<ul>
+<li>A pretrained SNM for cortical thickness</li>
+<li>Normative brain charts for multiple cortical parcellations</li>
+</ul>
 <blockquote>
 <p>🎨 Explore an <strong><a href="https://sina-mansour.github.io/normative_brain_charts/interactive_visualization/" target="_blank" rel="noopener">interactive visualization of the pretrained SNM1000 vertex resolution charts</a></strong></p>
 </blockquote>
