@@ -1,0 +1,3250 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reproducibility resources for the SNM manuscript.">
+      
+      
+        <meta name="author" content="Sina Mansour L.">
+      
+      
+        <link rel="canonical" href="https://sina-mansour.github.io/normative_brain_charts/">
+      
+      
+      
+        <link rel="next" href="reproducibility_walkthrough/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Spectral Normative Modeling of Brain Structure</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="overrides/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <script>
+    // Loading overlay for cell-anchored notebook pages.
+    //
+    // Runs during head parsing, before any body content arrives, so the
+    // overlay paints with the first frame. Engages only when the URL carries a
+    // cell anchor, so ordinary navigation is unaffected.
+    (function () {
+      // --- Tunables -------------------------------------------------------
+      var SCROLL_MS = 900;   // duration of the reveal scroll
+      var LEAD_IN   = 1.2;   // how far above the target to start, in viewports
+      var TIMEOUT_MS = 20000;
+      // --------------------------------------------------------------------
+
+      var hash = window.location.hash;
+      if (!/^#nb-cell-/.test(hash)) return;
+
+      var root = document.documentElement;
+      root.classList.add('nb-anchor-loading');
+
+      function headerOffset() {
+        // Matches the 4rem scroll-margin-top set in extra.css.
+        return parseFloat(getComputedStyle(root).fontSize) * 4;
+      }
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function animateScroll(fromY, toY, ms, onDone) {
+        var start = null;
+        var delta = toY - fromY;
+        function step(ts) {
+          if (start === null) start = ts;
+          var t = Math.min((ts - start) / ms, 1);
+          window.scrollTo(0, fromY + delta * easeInOutCubic(t));
+          if (t < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            onDone();
+          }
+        }
+        window.requestAnimationFrame(step);
+      }
+
+      var done = false;
+      function finish() {
+        if (done) return;
+        done = true;
+
+        var el = document.getElementById(hash.slice(1));
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // nb-anchor-scrolling disables CSS smooth scrolling, so the manual
+        // animation below is not fought by the stylesheet, and keeps the
+        // :target flash suppressed until the scroll has finished.
+        root.classList.add('nb-anchor-scrolling');
+        root.classList.remove('nb-anchor-loading');
+        root.classList.add('nb-anchor-settled');
+
+        function release() {
+          root.classList.remove('nb-anchor-scrolling');
+        }
+
+        if (!el) { release(); return; }
+
+        var targetY = el.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+        targetY = Math.max(0, Math.min(targetY,
+          document.documentElement.scrollHeight - window.innerHeight));
+
+        if (reduce) {
+          window.scrollTo(0, targetY);
+          release();
+          return;
+        }
+
+        // Start a little above the target so there is a visible, unhurried
+        // approach regardless of how far down the page the cell sits.
+        var startY = Math.max(0, targetY - LEAD_IN * window.innerHeight);
+        window.scrollTo(0, startY);
+        animateScroll(startY, targetY, SCROLL_MS, release);
+      }
+
+      // Normal path: all content parsed and all images decoded.
+      window.addEventListener('load', function () { setTimeout(finish, 120); });
+
+      // Escape hatches, so a stalled asset can never leave the page shaded.
+      setTimeout(finish, TIMEOUT_MS);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') finish();
+      });
+      document.addEventListener('click', finish, { once: true });
+    })();
+  </script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spectral-normative-modeling-of-brain-structure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Spectral Normative Modeling of Brain Structure" class="md-header__button md-logo" aria-label="Spectral Normative Modeling of Brain Structure" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.41 7.41 15 12l-4.59 4.6L9 15.18 12.18 12 9 8.82M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Spectral Normative Modeling of Brain Structure
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SNM Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sina-mansour/normative_brain_charts/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sina-mansour/normative_brain_charts
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Spectral Normative Modeling of Brain Structure" class="md-nav__button md-logo" aria-label="Spectral Normative Modeling of Brain Structure" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.41 7.41 15 12l-4.59 4.6L9 15.18 12.18 12 9 8.82M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+
+    </a>
+    Spectral Normative Modeling of Brain Structure
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sina-mansour/normative_brain_charts/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sina-mansour/normative_brain_charts
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNM Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNM Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#spectranorm-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧰 SpectraNorm Package
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducibility-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔁 Reproducibility Walkthrough
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📁 Repository Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 Repository Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-import-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Data Import Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-data-aggregation-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Aggregation Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-direct-normative-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Direct Normative Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-spectral-basis-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Spectral Basis Construction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-spectral-normative-model-fitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Spectral Normative Model Fitting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-performance-evaluations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Performance Evaluations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-cortical-growth-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Cortical Growth Gradients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-clinical-ad-evaluations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Clinical (AD) Evaluations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-data-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Data Sharing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pretrained-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗄️ Pretrained Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provided-normative-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Provided Normative Charts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Provided Normative Charts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parcellation-normative-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parcellation Normative Charts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vertex-wise-normative-charts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vertex-Wise Normative Charts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cortical-maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗺️ Cortical Maps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📄 License
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📬 Contact
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reproducibility_walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducibility Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipeline
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pipeline
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Import
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Import
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Import
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_01_hcp_young_adult/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HCP Young Adult
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_02_hcp_development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HCP Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_03_hcp_aging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HCP Aging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_04_abcd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABCD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_05_ukb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UK Biobank
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_06_rbc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducible Brain Charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_07_BGSP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BGSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_08_DLBS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DLBS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_09_adhd200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADHD-200
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_10_aomic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AOMIC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_11_sald/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SALD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_12_ixi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IXI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_13_asrb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASRB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_14_wayne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wayne State
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_15_adni/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADNI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_16_oasis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OASIS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_17_aibl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIBL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_18_singer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SINGER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_19_sg70/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SG70
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_20_tcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_21_gusto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUSTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_22_sglifespan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SG Lifespan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_23_spresto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S-PRESTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_24_abide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABIDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_25_corr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CoRR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_26_slim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/01_data_import/01_27_macc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MACC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Aggregation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Aggregation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/02_data_aggregation/02_01_aggregating_imported_datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aggregating Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/02_data_aggregation/02_02_train_test_split_labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Train/Test Split
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/02_data_aggregation/02_03_encode_thickness_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spectral Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Direct Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Direct Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/03_direct_model/03_01_direct_thickness_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thickness Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eigenmode Basis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Eigenmode Basis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/04_eigenmode_basis/04_01_cortical_connectome_eigenmodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connectome Eigenmodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spectral Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spectral Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/05_spectral_model/05_01_spectral_thickness_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNM Fit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Evaluation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Performance Evaluation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/06_performance_evaluation/06_01_systematic_performance_evaluations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systematic Evaluations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/06_performance_evaluation/06_02_publication_figures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publication Figures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Growth Gradients
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Growth Gradients
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/07_growth_gradients/07_01_growth_gradients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cortical Growth Gradients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clinical Evaluation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clinical Evaluation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/08_clinical_evaluation/08_01_clinical_application_in_AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AD Application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/08_clinical_evaluation/08_02_clinical_AD_cluster_analyses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AD Cluster Analyses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sharing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Sharing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/09_data_sharing/09_01_snm_1000_pretrained_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pretrained Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/09_data_sharing/09_02_atlas_charts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Atlas Charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/09_data_sharing/09_03_vertex_charts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vertex Charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interactive Visualization
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Interactive Visualization
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="interactive_visualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vertex-Wise Charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code/notebooks/10_interactive_visualization/08_01_interactive_visualizations_plotly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generating the Visualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+  
+                  
+
+
+  
+    <a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/README.md" title="View source on GitHub"
+       class="md-content__button md-icon" target="_blank" rel="noopener">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+
+
+
+<p><img alt="Spectral Normative Modeling" src="assets/banner.webp" /></p>
+<h1 id="spectral-normative-modeling-of-brain-structure">Spectral Normative Modeling of Brain Structure<a class="headerlink" href="#spectral-normative-modeling-of-brain-structure" title="Permanent link">&para;</a></h1>
+<p align="center">
+  <a href="https://doi.org/10.1101/2025.01.16.25320639" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Preprint-medRxiv-red?style=flat-square" alt="medRxiv preprint"></a>
+  <a href="https://sina-mansour.github.io/spectranorm/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Package-SpectraNorm-blue?style=flat-square" alt="SpectraNorm"></a>
+  <a href="https://pypi.python.org/pypi/spectranorm/" target="_blank" rel="noopener"><img src="https://img.shields.io/pypi/v/spectranorm?style=flat-square" alt="PyPI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPLv3%20%2F%20Commercial-green?style=flat-square" alt="License"></a>
+</p>
+
+<p>This repository provides the complete, reproducible analysis code accompanying the manuscript:</p>
+<blockquote>
+<p><strong>Mansour L., S., et al. (2026). Spectral Normative Modeling of Brain Structure. <em>medRxiv</em>.</strong> DOI: <a href="https://doi.org/10.1101/2025.01.16.25320639" target="_blank" rel="noopener">10.1101/2025.01.16.25320639</a></p>
+</blockquote>
+<p>The study introduces <strong>Spectral Normative Models (SNMs)</strong> — a framework for normative modeling of high-dimensional cortical phenotypes using spectral (eigenmode-based) representations. The repository contains every step of the analysis pipeline, from raw data preprocessing through model fitting, performance evaluation, and clinical application, enabling full reproduction of all manuscript figures and results.</p>
+<hr />
+<h2 id="spectranorm-package">🧰 SpectraNorm Package<a class="headerlink" href="#spectranorm-package" title="Permanent link">&para;</a></h2>
+<p>The analysis code in this repository is built on top of <strong>SpectraNorm</strong> — a dedicated Python package we developed to facilitate the implementation of conventional and spectral normative models.</p>
+<p><a href="https://sina-mansour.github.io/spectranorm/" target="_blank" rel="noopener"><img alt="SpectraNorm Docs" src="https://img.shields.io/badge/Docs-sina--mansour.github.io/spectranorm-blue?style=flat-square" /></a>
+<a href="https://pypi.python.org/pypi/spectranorm/" target="_blank" rel="noopener"><img alt="PyPI" src="https://img.shields.io/pypi/v/spectranorm?style=flat-square" /></a></p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>spectranorm<span class="w"> </span>--upgrade
+</code></pre></div>
+<p>For tutorials, API reference, and further documentation, visit the <a href="https://sina-mansour.github.io/spectranorm/" target="_blank" rel="noopener">SpectraNorm documentation site</a>.</p>
+<hr />
+<h2 id="reproducibility-walkthrough">🔁 Reproducibility Walkthrough<a class="headerlink" href="#reproducibility-walkthrough" title="Permanent link">&para;</a></h2>
+<p>For a complete reproduction guide, including environment setup, runtime estimates, HPC requirements, and a figure-by-figure mapping from manuscript results to the notebook cells that produce them, see the provided <a href="reproducibility_walkthrough/">Reproducibility Walkthrough</a>.</p>
+<hr />
+<h2 id="repository-structure">📁 Repository Structure<a class="headerlink" href="#repository-structure" title="Permanent link">&para;</a></h2>
+<p>The analysis is organized into <strong>9 sequential stages</strong>, each corresponding to a directory of Jupyter notebooks:</p>
+<h3 id="1-data-import-scripts">1. <a href="data_import/">Data Import Scripts</a><a class="headerlink" href="#1-data-import-scripts" title="Permanent link">&para;</a></h3>
+<p>Imports and preprocesses cortical thickness data from several large-scale neuroimaging datasets, comprising over <strong>78,000 healthy brains</strong> from <strong>30 different datasets</strong>. Includes:
+- Applying exclusion criteria to ensure data quality and consistency
+- Processing cortical thickness maps and transforming them to <strong>fs_LR 32k</strong> surface space
+- Preparing data for downstream analysis</p>
+<h3 id="2-data-aggregation-scripts">2. <a href="code/notebooks/02_data_aggregation/02_01_aggregating_imported_datasets/">Data Aggregation Scripts</a><a class="headerlink" href="#2-data-aggregation-scripts" title="Permanent link">&para;</a></h3>
+<p>Aggregates and prepares the cleaned data for normative modeling. Includes:
+- Combining cleaned data from multiple datasets
+- Final round of quality control
+- Random train/test split for model validation
+- Generating spectral coefficients of cortical thickness from vertex-wise data</p>
+<h3 id="3-direct-normative-models">3. <a href="code/notebooks/03_direct_model/03_01_direct_thickness_model/">Direct Normative Models</a><a class="headerlink" href="#3-direct-normative-models" title="Permanent link">&para;</a></h3>
+<p>Specifies a direct normative modeling architecture as a backbone for the spectral model. Includes:
+- Implementing a <strong>Hierarchical Bayesian Regression</strong> normative model (via <a href="https://www.pymc.io/" target="_blank" rel="noopener">PyMC</a>)
+- Fitting the model for a single variable (mean cortical thickness) as a function of age, sex, and site — used as a sanity check
+- This architecture is reused in subsequent notebooks for both direct and spectral implementations</p>
+<h3 id="4-spectral-basis-construction">4. <a href="code/notebooks/04_eigenmode_basis/04_01_cortical_connectome_eigenmodes/">Spectral Basis Construction</a><a class="headerlink" href="#4-spectral-basis-construction" title="Permanent link">&para;</a></h3>
+<p>Generates the spectral basis functions (connectome eigenmodes) used to encode high-resolution cortical phenotypes. Includes:
+- Computing connectome-based brain eigenmodes via SVD of a random walk graph Laplacian shift operator</p>
+<h3 id="5-spectral-normative-model-fitting">5. <a href="code/notebooks/05_spectral_model/05_01_spectral_thickness_model/">Spectral Normative Model Fitting</a><a class="headerlink" href="#5-spectral-normative-model-fitting" title="Permanent link">&para;</a></h3>
+<p>Fits the full Spectral Normative Model (SNM) using the spectral coefficients of cortical thickness. Includes:
+- Fitting the <strong>Spectral Normative Model (SNM)</strong>
+- Verifying the generation of normative ranges
+- Saving the fitted model for subsequent evaluation</p>
+<h3 id="6-performance-evaluations">6. <a href="code/notebooks/06_performance_evaluation/06_01_systematic_performance_evaluations/">Performance Evaluations</a><a class="headerlink" href="#6-performance-evaluations" title="Permanent link">&para;</a></h3>
+<p>Evaluates SNM performance and benchmarks it against the direct normative model. Includes:
+- Evaluating accuracy across varying numbers of modes and spatial granularities
+- Comparing SNM and direct model performance
+- Reproducing comparative figures from the manuscript</p>
+<h3 id="7-cortical-growth-gradients">7. <a href="code/notebooks/07_growth_gradients/07_01_growth_gradients/">Cortical Growth Gradients</a><a class="headerlink" href="#7-cortical-growth-gradients" title="Permanent link">&para;</a></h3>
+<p>Uses the fitted SNM to investigate cortical growth gradients across the lifespan. Includes:
+- Mapping three distinct cortical growth gradients
+- Comparing growth gradients to known cortical organization hierarchies
+- Characterizing lifespan trajectories of change</p>
+<h3 id="8-clinical-ad-evaluations">8. <a href="code/notebooks/08_clinical_evaluation/08_01_clinical_application_in_AD/">Clinical (AD) Evaluations</a><a class="headerlink" href="#8-clinical-ad-evaluations" title="Permanent link">&para;</a></h3>
+<p>Applies the fitted SNM to a clinical Alzheimer's Disease (AD) sample. Includes:
+- Loading data from the MACC Harmonization dataset
+- Fine-tuning the healthy SNM via normative adaptation (site harmonization)
+- Mapping individual deviations from the normative model
+- Characterizing the normative signature of AD-related cortical atrophy
+- Assessing whether individual deviation patterns support discrete AD subtypes (<a href="code/notebooks/08_clinical_evaluation/08_02_clinical_AD_cluster_analyses/">clusterability analyses</a>)</p>
+<h3 id="9-data-sharing">9. <a href="code/notebooks/09_data_sharing/09_01_snm_1000_pretrained_model/">Data Sharing</a><a class="headerlink" href="#9-data-sharing" title="Permanent link">&para;</a></h3>
+<p>Shares the data produced in this manuscript. Includes:
+- A pretrained SNM for cortical thickness
+- Normative brain charts for multiple cortical parcellations</p>
+<blockquote>
+<p>🎨 Explore an <strong><a href="https://sina-mansour.github.io/normative_brain_charts/interactive_visualization/" target="_blank" rel="noopener">interactive visualization of the pretrained SNM1000 vertex resolution charts</a></strong></p>
+</blockquote>
+<hr />
+<h2 id="pretrained-model">🗄️ Pretrained Model<a class="headerlink" href="#pretrained-model" title="Permanent link">&para;</a></h2>
+<p>The pretrained SNM1000 model is available as a release asset:</p>
+<p><a href="https://github.com/sina-mansour/normative_brain_charts/releases/latest" target="_blank" rel="noopener"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/sina-mansour/normative_brain_charts?style=flat-square" /></a></p>
+<p>Download and decompress:
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://github.com/sina-mansour/normative_brain_charts/releases/download/v1.0/pretrained_SNM_1000_V1.0.tar.gz
+tar<span class="w"> </span>-xzvf<span class="w"> </span>pretrained_SNM_1000_V1.0.tar.gz
+</code></pre></div></p>
+<p>Load the model in Python:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">spectranorm</span><span class="w"> </span><span class="kn">import</span> <span class="n">snm</span>
+
+<span class="n">snm_1000</span> <span class="o">=</span> <span class="n">snm</span><span class="o">.</span><span class="n">SpectralNormativeModel</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span>
+    <span class="s2">&quot;/&lt;path-to-extracted-directory&gt;/pretrained_SNM_1000_V1.0/&quot;</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<p>For usage examples, refer to the notebooks on <a href="code/notebooks/07_growth_gradients/07_01_growth_gradients/">growth gradients</a>, <a href="code/notebooks/08_clinical_evaluation/08_01_clinical_application_in_AD/">clinical application</a>, and <a href="code/notebooks/09_data_sharing/09_01_snm_1000_pretrained_model/">data sharing</a>, as well as the <a href="https://sina-mansour.github.io/spectranorm/tutorials/" target="_blank" rel="noopener">SpectraNorm tutorials</a>.</p>
+<h2 id="provided-normative-charts">📊 Provided Normative Charts<a class="headerlink" href="#provided-normative-charts" title="Permanent link">&para;</a></h2>
+<h3 id="parcellation-normative-charts">Parcellation Normative Charts<a class="headerlink" href="#parcellation-normative-charts" title="Permanent link">&para;</a></h3>
+<p>Using the pretrained <strong>SNM1000</strong> model (trained on &gt;78,000 healthy brains), we derived cortical thickness normative trajectories across <strong>50 parcellation schemes</strong> covering <strong>23,242 cortical regions</strong> in total. Charts are provided separately for males, females, and the combined sample.</p>
+<p>Each item in the table below links to the associated CSV file included in the current release.</p>
+<table>
+<thead>
+<tr>
+<th>Atlas</th>
+<th>Combined</th>
+<th>Female</th>
+<th>Male</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desikan-Killiany (<code>aparc</code>)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Destrieux (<code>aparc.a2009s</code>)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.a2009s.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.a2009s.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.a2009s.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>DKT (<code>aparc.DKTatlas40</code>)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.DKTatlas40.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.DKTatlas40.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/aparc.DKTatlas40.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Von Economo-Koskinas</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Economo.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Economo.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Economo.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Gordon 333</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Gordon333.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Gordon333.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Gordon333.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>HCP MMP 1.0 (Glasser)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/HCP_MMP1.0_Glasser.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/HCP_MMP1.0_Glasser.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/HCP_MMP1.0_Glasser.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yeo 7 Networks (N1000)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks_N1000.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks_N1000.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks_N1000.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yeo 7 Networks (split components)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks.split_components.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks.split_components.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_7Networks.split_components.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yeo 17 Networks (N1000)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks_N1000.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks_N1000.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks_N1000.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yeo 17 Networks (split components)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks.split_components.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks.split_components.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yeo2011_17Networks.split_components.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 100 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 100 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_100Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 200 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 200 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_200Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 300 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 300 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_300Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 400 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 400 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_400Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 500 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 500 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_500Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 600 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 600 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_600Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 700 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 700 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_700Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 800 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 800 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_800Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 900 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 900 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_900Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 1000 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_7Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_7Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_7Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Schaefer 1000 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_17Networks_order.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_17Networks_order.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Schaefer2018_1000Parcels_17Networks_order.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 100 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 100 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_100Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 200 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 200 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_200Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 300 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 300 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_300Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 400 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 400 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_400Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 500 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 500 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_500Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 600 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 600 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_600Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 700 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 700 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_700Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 800 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 800 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_800Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 900 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 900 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_900Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 1000 (7 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_7Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Yan 1000 (17 Networks)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.female_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/Yan2023_1000Parcels_Yeo2011_17Networks.male_normative_trajectories.csv" target="_blank" rel="noopener">📄</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="vertex-wise-normative-charts">Vertex-Wise Normative Charts<a class="headerlink" href="#vertex-wise-normative-charts" title="Permanent link">&para;</a></h3>
+<p>In addition to the parcellation-based charts, we also provide normative trajectories at the <strong>full vertex resolution</strong> of the <strong>fs_LR 32k</strong> surface mesh (~32,000 vertices per hemisphere).</p>
+<table>
+<thead>
+<tr>
+<th>Resolution</th>
+<th>Combined</th>
+<th>Female</th>
+<th>Male</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vertex-wise (<code>fs_LR 32k</code>)</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/vertex-wise.fs_LR_32k.normative_trajectories.joblib" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/vertex-wise.fs_LR_32k.female_normative_trajectories.joblib" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/charts/vertex-wise.fs_LR_32k.male_normative_trajectories.joblib" target="_blank" rel="noopener">📄</a></td>
+</tr>
+</tbody>
+</table>
+<p>These are stored as <code>.joblib</code> files and can be loaded directly into Python.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+
+<span class="c1"># Load the normative trajectories</span>
+<span class="n">vertex_charts</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;/&lt;path-to-file&gt;/vertex-wise.fs_LR_32k.normative_trajectories.joblib&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="cortical-maps">🗺️ Cortical Maps<a class="headerlink" href="#cortical-maps" title="Permanent link">&para;</a></h2>
+<p>The cortical maps derived in this study are publicly available in the <a href="https://github.com/sina-mansour/normative_brain_charts/tree/main/data/brainmaps" target="_blank" rel="noopener"><code>data/brainmaps/</code></a> directory. Each map is provided in both <code>.dscalar.nii</code> (CIFTI) and <code>.npy</code> (NumPy) formats.</p>
+<table>
+<thead>
+<tr>
+<th>Map</th>
+<th>CIFTI</th>
+<th>NumPy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First Thickness Growth Gradient</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/First_Thickness_Growth_Gradient.dscalar.nii" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/First_Thickness_Growth_Gradient.npy" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Second Thickness Growth Gradient</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Second_Thickness_Growth_Gradient.dscalar.nii" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Second_Thickness_Growth_Gradient.npy" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Third Thickness Growth Gradient</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Third_Thickness_Growth_Gradient.dscalar.nii" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Third_Thickness_Growth_Gradient.npy" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Developmental Cortical Pruning</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Developmental_Cortical_Pruning.dscalar.nii" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Developmental_Cortical_Pruning.npy" target="_blank" rel="noopener">📄</a></td>
+</tr>
+<tr>
+<td>Aging Thickness Decline</td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Aging_Thickness_Decline.dscalar.nii" target="_blank" rel="noopener">📄</a></td>
+<td><a href="https://github.com/sina-mansour/normative_brain_charts/blob/main/data/brainmaps/Aging_Thickness_Decline.npy" target="_blank" rel="noopener">📄</a></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>.dscalar.nii</code> files can be visualized directly in <a href="https://www.humanconnectome.org/software/connectome-workbench" target="_blank" rel="noopener">Connectome Workbench</a>, while the <code>.npy</code> files can be loaded in Python via <code>numpy.load()</code>.</p>
+<hr />
+<h2 id="license">📄 License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>This repository is <strong>dual licensed</strong>:</p>
+<ul>
+<li><strong>Non-commercial / Academic use</strong>: <a href="https://github.com/sina-mansour/normative_brain_charts/tree/main/LICENSE" target="_blank" rel="noopener">GNU AGPLv3</a></li>
+<li><strong>Commercial use</strong>: A separate commercial license is required</li>
+</ul>
+<p>See the <a href="https://github.com/sina-mansour/normative_brain_charts/tree/main/LICENSE" target="_blank" rel="noopener">LICENSE</a> file for full details.</p>
+<hr />
+<h2 id="contact">📬 Contact<a class="headerlink" href="#contact" title="Permanent link">&para;</a></h2>
+<p>If you have questions, encounter issues, or would like to collaborate, feel free to reach out:</p>
+<p><a href="https://sina-mansour.github.io/" target="_blank" rel="noopener"><img alt="Contact" src="https://img.shields.io/badge/Contact-sina.mansour.lakouraj@gmail.com-blue" /></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.action.edit", "navigation.sections", "navigation.indexes", "navigation.top", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
