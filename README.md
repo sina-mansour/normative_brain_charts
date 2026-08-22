@@ -45,6 +45,7 @@ The analysis is organized into **9 sequential stages**, each corresponding to a 
 ### 1. [Data Import Scripts](data_import.md)
 
 Imports and preprocesses cortical thickness data from several large-scale neuroimaging datasets, comprising over **78,000 healthy brains** from **30 different datasets**. Includes:
+
 - Applying exclusion criteria to ensure data quality and consistency
 - Processing cortical thickness maps and transforming them to **fs_LR 32k** surface space
 - Preparing data for downstream analysis
@@ -52,6 +53,7 @@ Imports and preprocesses cortical thickness data from several large-scale neuroi
 ### 2. [Data Aggregation Scripts](code/notebooks/02_data_aggregation/02_01_aggregating_imported_datasets.ipynb)
 
 Aggregates and prepares the cleaned data for normative modeling. Includes:
+
 - Combining cleaned data from multiple datasets
 - Final round of quality control
 - Random train/test split for model validation
@@ -60,6 +62,7 @@ Aggregates and prepares the cleaned data for normative modeling. Includes:
 ### 3. [Direct Normative Models](code/notebooks/03_direct_model/03_01_direct_thickness_model.ipynb)
 
 Specifies a direct normative modeling architecture as a backbone for the spectral model. Includes:
+
 - Implementing a **Hierarchical Bayesian Regression** normative model (via [PyMC](https://www.pymc.io/))
 - Fitting the model for a single variable (mean cortical thickness) as a function of age, sex, and site — used as a sanity check
 - This architecture is reused in subsequent notebooks for both direct and spectral implementations
@@ -67,11 +70,13 @@ Specifies a direct normative modeling architecture as a backbone for the spectra
 ### 4. [Spectral Basis Construction](code/notebooks/04_eigenmode_basis/04_01_cortical_connectome_eigenmodes.ipynb)
 
 Generates the spectral basis functions (connectome eigenmodes) used to encode high-resolution cortical phenotypes. Includes:
+
 - Computing connectome-based brain eigenmodes via SVD of a random walk graph Laplacian shift operator
 
 ### 5. [Spectral Normative Model Fitting](code/notebooks/05_spectral_model/05_01_spectral_thickness_model.ipynb)
 
 Fits the full Spectral Normative Model (SNM) using the spectral coefficients of cortical thickness. Includes:
+
 - Fitting the **Spectral Normative Model (SNM)**
 - Verifying the generation of normative ranges
 - Saving the fitted model for subsequent evaluation
@@ -79,6 +84,7 @@ Fits the full Spectral Normative Model (SNM) using the spectral coefficients of 
 ### 6. [Performance Evaluations](code/notebooks/06_performance_evaluation/06_01_systematic_performance_evaluations.ipynb)
 
 Evaluates SNM performance and benchmarks it against the direct normative model. Includes:
+
 - Evaluating accuracy across varying numbers of modes and spatial granularities
 - Comparing SNM and direct model performance
 - Reproducing comparative figures from the manuscript
@@ -86,6 +92,7 @@ Evaluates SNM performance and benchmarks it against the direct normative model. 
 ### 7. [Cortical Growth Gradients](code/notebooks/07_growth_gradients/07_01_growth_gradients.ipynb)
 
 Uses the fitted SNM to investigate cortical growth gradients across the lifespan. Includes:
+
 - Mapping three distinct cortical growth gradients
 - Comparing growth gradients to known cortical organization hierarchies
 - Characterizing lifespan trajectories of change
@@ -93,6 +100,7 @@ Uses the fitted SNM to investigate cortical growth gradients across the lifespan
 ### 8. [Clinical (AD) Evaluations](code/notebooks/08_clinical_evaluation/08_01_clinical_application_in_AD.ipynb)
 
 Applies the fitted SNM to a clinical Alzheimer's Disease (AD) sample. Includes:
+
 - Loading data from the MACC Harmonization dataset
 - Fine-tuning the healthy SNM via normative adaptation (site harmonization)
 - Mapping individual deviations from the normative model
@@ -102,6 +110,7 @@ Applies the fitted SNM to a clinical Alzheimer's Disease (AD) sample. Includes:
 ### 9. [Data Sharing](code/notebooks/09_data_sharing/09_01_snm_1000_pretrained_model.ipynb)
 
 Shares the data produced in this manuscript. Includes:
+
 - A pretrained SNM for cortical thickness
 - Normative brain charts for multiple cortical parcellations
 
